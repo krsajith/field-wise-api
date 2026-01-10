@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ep-polished-sea-539500-pooler.us-west-2.aws.neon.tech:5432/neondb
+    username: krsajith
+    password: DzR5sc7QxpCN
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      connection-timeout: 20000
+      max-lifetime: 1800000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate   # use update/create-drop only for demos
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: never
