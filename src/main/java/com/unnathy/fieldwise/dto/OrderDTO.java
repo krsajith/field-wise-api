@@ -5,11 +5,9 @@ import java.time.Instant;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDTO extends BaseDTO {
@@ -28,7 +26,7 @@ public class OrderDTO extends BaseDTO {
     private BigDecimal discountAmount;
     private BigDecimal totalAmount;
     private String status;
-    private Long approvedById;
+    private Long approvedBy;
     private Instant approvedAt;
     private BigDecimal latitude;
     private BigDecimal longitude;

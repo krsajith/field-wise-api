@@ -4,11 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnquiryDTO extends BaseDTO {
@@ -28,5 +26,5 @@ public class EnquiryDTO extends BaseDTO {
     private LocalDate nextFollowUpDate;
     private String followUpNotes;
     private String lostReason;
-    private Long convertedToShopId;
+    private Long convertedToShop;
 }
