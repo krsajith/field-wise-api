@@ -1,11 +1,11 @@
 package com.unnathy.fieldwise.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -13,13 +13,11 @@ import java.time.Instant;
 @Table(name = "feedback")
 public class Feedback extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shop_id")
-    private Shop shop;
+    @Column(name = "shop_id")
+    private Long shop;
 
     @Column(name = "feedback_type", nullable = false, length = 50)
     private String feedbackType;

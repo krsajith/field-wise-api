@@ -15,13 +15,11 @@ import java.time.LocalDate;
 @Table(name = "leave_applications")
 public class LeaveApplication extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private LeaveCategory category;
+    @Column(name = "category_id", nullable = false)
+    private Long category;
 
     @Column(name = "from_date", nullable = false)
     private LocalDate fromDate;
@@ -42,9 +40,8 @@ public class LeaveApplication extends BaseEntity {
     @Column(name = "status", length = 50)
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "approved_by")
-    private User approvedBy;
+    @Column(name = "approved_by")
+    private Long approvedBy;
 
     @Column(name = "approved_at")
     private Instant approvedAt;

@@ -1,12 +1,13 @@
 package com.unnathy.fieldwise.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -20,13 +21,11 @@ public class Product extends BaseEntity {
     @Column(name = "code", nullable = false, length = 100)
     private String code;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private ProductCategory category;
+    @Column(name = "category_id", nullable = false)
+    private Long category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sub_category_id")
-    private ProductSubCategory subCategory;
+    @Column(name = "sub_category_id")
+    private Long subCategory;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;

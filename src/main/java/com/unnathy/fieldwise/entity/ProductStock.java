@@ -14,13 +14,11 @@ import java.time.Instant;
 @Table(name = "product_stock")
 public class ProductStock extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @Column(name = "product_id", nullable = false)
+    private Long product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shop_id")
-    private Shop shop;
+    @Column(name = "shop_id")
+    private Long shop;
 
     @ColumnDefault("0")
     @Column(name = "quantity", nullable = false, precision = 10, scale = 2)

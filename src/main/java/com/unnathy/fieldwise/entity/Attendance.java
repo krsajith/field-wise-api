@@ -14,9 +14,8 @@ import java.time.Instant;
 @Table(name = "attendance")
 public class Attendance extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
     @Column(name = "punch_in_time", nullable = false)
     private Instant punchInTime;

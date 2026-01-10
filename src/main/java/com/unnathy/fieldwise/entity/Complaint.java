@@ -13,13 +13,11 @@ import java.time.Instant;
 @Table(name = "complaints")
 public class Complaint extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shop_id")
-    private Shop shop;
+    @Column(name = "shop_id")
+    private Long shop;
 
     @Column(name = "complaint_type", nullable = false, length = 50)
     private String complaintType;
@@ -38,9 +36,8 @@ public class Complaint extends BaseEntity {
     @Column(name = "status", length = 50)
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assigned_to")
-    private User assignedTo;
+    @Column(name = "assigned_to")
+    private Long assignedTo;
 
     @Column(name = "resolved_at")
     private Instant resolvedAt;

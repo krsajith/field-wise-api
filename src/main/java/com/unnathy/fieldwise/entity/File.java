@@ -1,11 +1,10 @@
 package com.unnathy.fieldwise.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -13,9 +12,8 @@ import java.time.Instant;
 @Table(name = "files")
 public class File extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uploaded_by")
-    private User uploadedBy;
+    @Column(name = "uploaded_by")
+    private Long uploadedBy;
 
     @Column(name = "file_name", nullable = false)
     private String fileName;

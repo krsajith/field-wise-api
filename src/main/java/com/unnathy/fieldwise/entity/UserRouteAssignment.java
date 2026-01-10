@@ -1,11 +1,12 @@
 package com.unnathy.fieldwise.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
 import java.time.LocalDate;
 
 @Getter
@@ -14,13 +15,11 @@ import java.time.LocalDate;
 @Table(name = "user_route_assignments")
 public class UserRouteAssignment extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "route_id", nullable = false)
-    private Route route;
+    @Column(name = "route_id", nullable = false)
+    private Long route;
 
     @Column(name = "assigned_date", nullable = false)
     private LocalDate assignedDate;

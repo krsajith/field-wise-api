@@ -1,7 +1,5 @@
 package com.unnathy.fieldwise.core;
 
-import lombok.EqualsAndHashCode;
-
 import com.unnathy.fieldwise.dto.BaseDTO;
 import com.unnathy.fieldwise.entity.User;
 import org.springframework.web.bind.annotation.RequestBody;

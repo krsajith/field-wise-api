@@ -1,11 +1,11 @@
 package com.unnathy.fieldwise.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -19,9 +19,8 @@ public class Route extends BaseEntity {
     @Column(name = "code", length = 50)
     private String code;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "district_id")
-    private District district;
+    @Column(name = "district_id")
+    private Long district;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;

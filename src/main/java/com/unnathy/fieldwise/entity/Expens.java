@@ -15,13 +15,11 @@ import java.time.LocalDate;
 @Table(name = "expenses")
 public class Expens extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private ExpenseCategory category;
+    @Column(name = "category_id", nullable = false)
+    private Long category;
 
     @Column(name = "expense_date", nullable = false)
     private LocalDate expenseDate;
@@ -39,9 +37,8 @@ public class Expens extends BaseEntity {
     @Column(name = "status", length = 50)
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "approved_by")
-    private User approvedBy;
+    @Column(name = "approved_by")
+    private Long approvedBy;
 
     @Column(name = "approved_at")
     private Instant approvedAt;

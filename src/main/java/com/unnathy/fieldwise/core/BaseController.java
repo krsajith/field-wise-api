@@ -1,8 +1,5 @@
 package com.unnathy.fieldwise.core;
 
-import lombok.EqualsAndHashCode;
-
-
 import com.unnathy.fieldwise.dto.BaseDTO;
 import com.unnathy.fieldwise.entity.User;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,13 +18,13 @@ public interface BaseController<T extends BaseDTO,I extends Serializable> extend
     }
 
     @PatchMapping()
-    public default T patch(@RequestBody T data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) {
-        return data;
+    public default T patch(@RequestBody T data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
+        return getService().patch(data,authorization,principal);
     }
 
     @PutMapping()
-    default T put(@RequestBody T data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) {
-        return data;
+    default T put(@RequestBody T data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
+        return getService().put(data,authorization,principal);
     }
 
     @GetMapping()

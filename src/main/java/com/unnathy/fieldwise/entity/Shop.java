@@ -1,12 +1,13 @@
 package com.unnathy.fieldwise.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -20,9 +21,8 @@ public class Shop extends BaseEntity {
     @Column(name = "code", length = 50)
     private String code;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shop_type_id")
-    private ShopType shopType;
+    @Column(name = "shop_type_id")
+    private Long shopType;
 
     @Column(name = "contact_person")
     private String contactPerson;
@@ -54,17 +54,14 @@ public class Shop extends BaseEntity {
     @Column(name = "address_line2", length = 500)
     private String addressLine2;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id")
-    private Place place;
+    @Column(name = "place_id")
+    private Long place;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "district_id")
-    private District district;
+    @Column(name = "district_id")
+    private Long district;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "state_id")
-    private State state;
+    @Column(name = "state_id")
+    private Long state;
 
     @Column(name = "pincode", length = 10)
     private String pincode;
@@ -79,13 +76,11 @@ public class Shop extends BaseEntity {
     @Column(name = "geofence_radius")
     private Integer geofenceRadius;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "route_id")
-    private Route route;
+    @Column(name = "route_id")
+    private Long route;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bank_id")
-    private Bank bank;
+    @Column(name = "bank_id")
+    private Long bank;
 
     @Column(name = "bank_account_number", length = 50)
     private String bankAccountNumber;
@@ -93,9 +88,8 @@ public class Shop extends BaseEntity {
     @Column(name = "bank_ifsc_code", length = 20)
     private String bankIfscCode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_term_id")
-    private PaymentTerm paymentTerm;
+    @Column(name = "payment_term_id")
+    private Long paymentTerm;
 
     @Column(name = "credit_limit", precision = 12, scale = 2)
     private BigDecimal creditLimit;
@@ -108,13 +102,11 @@ public class Shop extends BaseEntity {
     @Column(name = "is_verified")
     private Boolean isVerified;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by")
-    private User createdBy;
+    @Column(name = "created_by")
+    private Long createdBy;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "verified_by")
-    private User verifiedBy;
+    @Column(name = "verified_by")
+    private Long verifiedBy;
 
     @Column(name = "shop_photo_url", length = 500)
     private String shopPhotoUrl;

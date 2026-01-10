@@ -18,17 +18,14 @@ public class Collection extends BaseEntity {
     @Column(name = "collection_number", nullable = false, length = 50)
     private String collectionNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "shop_id", nullable = false)
-    private Shop shop;
+    @Column(name = "shop_id", nullable = false)
+    private Long shop;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @Column(name = "order_id")
+    private Long order;
 
     @Column(name = "collection_date", nullable = false)
     private LocalDate collectionDate;
@@ -45,9 +42,8 @@ public class Collection extends BaseEntity {
     @Column(name = "cheque_date")
     private LocalDate chequeDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bank_id")
-    private Bank bank;
+    @Column(name = "bank_id")
+    private Long bank;
 
     @Column(name = "transaction_reference", length = 100)
     private String transactionReference;
@@ -56,9 +52,8 @@ public class Collection extends BaseEntity {
     @Column(name = "status", length = 50)
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "approved_by")
-    private User approvedBy;
+    @Column(name = "approved_by")
+    private Long approvedBy;
 
     @Column(name = "approved_at")
     private Instant approvedAt;

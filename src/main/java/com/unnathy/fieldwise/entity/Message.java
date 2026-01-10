@@ -13,13 +13,11 @@ import java.time.Instant;
 @Table(name = "messages")
 public class Message extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "from_user_id")
-    private User fromUser;
+    @Column(name = "from_user_id")
+    private Long fromUser;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "to_user_id")
-    private User toUser;
+    @Column(name = "to_user_id")
+    private Long toUser;
 
     @ColumnDefault("'DIRECT'")
     @Column(name = "message_type", length = 50)

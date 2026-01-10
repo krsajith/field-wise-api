@@ -1,12 +1,13 @@
 package com.unnathy.fieldwise.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
 
 @Getter
@@ -15,9 +16,8 @@ import java.time.LocalDate;
 @Table(name = "enquiries")
 public class Enquiry extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
     @Column(name = "customer_name", nullable = false)
     private String customerName;
@@ -63,8 +63,7 @@ public class Enquiry extends BaseEntity {
     @Column(name = "lost_reason", length = Integer.MAX_VALUE)
     private String lostReason;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "converted_to_shop_id")
-    private Shop convertedToShop;
+    @Column(name = "converted_to_shop_id")
+    private Long convertedToShop;
 
 }

@@ -13,9 +13,8 @@ import java.time.Instant;
 @Table(name = "webauthn_credentials")
 public class WebauthnCredential extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
     @Column(name = "credential_id", nullable = false)
     private byte[] credentialId;

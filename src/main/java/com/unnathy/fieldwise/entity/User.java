@@ -32,13 +32,11 @@ public class User extends BaseEntity {
     @Column(name = "last_name", length = 100)
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    @Column(name = "role_id", nullable = false)
+    private Long role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reporting_manager_id")
-    private User reportingManager;
+    @Column(name = "reporting_manager_id")
+    private Long reportingManager;
 
     @Column(name = "employee_code", length = 50)
     private String employeeCode;

@@ -16,9 +16,8 @@ import java.util.Map;
 @Table(name = "push_notifications")
 public class PushNotification extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private Long user;
 
     @Column(name = "title", nullable = false)
     private String title;

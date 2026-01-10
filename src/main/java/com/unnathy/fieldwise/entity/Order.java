@@ -18,17 +18,14 @@ public class Order extends BaseEntity {
     @Column(name = "order_number", nullable = false, length = 50)
     private String orderNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "shop_id", nullable = false)
-    private Shop shop;
+    @Column(name = "shop_id", nullable = false)
+    private Long shop;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shop_visit_id")
-    private ShopVisit shopVisit;
+    @Column(name = "shop_visit_id")
+    private Long shopVisit;
 
     @Column(name = "order_date", nullable = false)
     private LocalDate orderDate;
@@ -39,13 +36,11 @@ public class Order extends BaseEntity {
     @Column(name = "delivery_mode", length = 100)
     private String deliveryMode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_mode_id")
-    private PaymentTerm paymentMode;
+    @Column(name = "payment_mode_id")
+    private Long paymentMode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "transportation_mode_id")
-    private TransportationMode transportationMode;
+    @Column(name = "transportation_mode_id")
+    private Long transportationMode;
 
     @Column(name = "subtotal", nullable = false, precision = 12, scale = 2)
     private BigDecimal subtotal;
@@ -65,9 +60,8 @@ public class Order extends BaseEntity {
     @Column(name = "status", nullable = false, length = 50)
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "approved_by")
-    private User approvedBy;
+    @Column(name = "approved_by")
+    private Long approvedBy;
 
     @Column(name = "approved_at")
     private Instant approvedAt;
