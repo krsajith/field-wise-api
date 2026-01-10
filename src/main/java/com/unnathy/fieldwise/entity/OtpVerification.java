@@ -11,11 +11,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "otp_verifications")
-public class OtpVerification {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class OtpVerification extends BaseEntity {
 
     @Column(name = "phone", nullable = false, length = 20)
     private String phone;
@@ -32,10 +28,5 @@ public class OtpVerification {
 
     @Column(name = "expires_at", nullable = false)
     private Instant expiresAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
 
 }

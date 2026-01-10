@@ -12,11 +12,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "product_stock")
-public class ProductStock {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class ProductStock extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_id", nullable = false)
@@ -33,6 +29,5 @@ public class ProductStock {
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "last_updated_at")
     private Instant lastUpdatedAt;
-
 
 }

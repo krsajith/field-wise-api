@@ -11,11 +11,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "places")
-public class Place {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Place extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "district_id", nullable = false)
@@ -30,14 +26,5 @@ public class Place {
     @ColumnDefault("true")
     @Column(name = "is_active")
     private Boolean isActive;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

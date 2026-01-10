@@ -13,11 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "leave_applications")
-public class LeaveApplication {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class LeaveApplication extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -58,14 +54,5 @@ public class LeaveApplication {
 
     @Column(name = "attachment_url", length = 500)
     private String attachmentUrl;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

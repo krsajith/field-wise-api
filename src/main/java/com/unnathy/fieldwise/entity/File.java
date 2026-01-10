@@ -11,11 +11,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "files")
-public class File {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class File extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uploaded_by")
@@ -38,10 +34,5 @@ public class File {
 
     @Column(name = "entity_id")
     private Long entityId;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
 
 }

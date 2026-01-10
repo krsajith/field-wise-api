@@ -11,11 +11,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "leave_categories")
-public class LeaveCategory {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class LeaveCategory extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -36,14 +32,5 @@ public class LeaveCategory {
     @ColumnDefault("true")
     @Column(name = "is_active")
     private Boolean isActive;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

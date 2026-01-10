@@ -12,11 +12,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "shops")
-public class Shop {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Shop extends BaseEntity {
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -125,14 +121,5 @@ public class Shop {
 
     @Column(name = "notes", length = Integer.MAX_VALUE)
     private String notes;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

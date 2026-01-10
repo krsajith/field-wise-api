@@ -14,11 +14,7 @@ import java.util.Map;
 @Setter
 @Entity
 @Table(name = "push_notifications")
-public class PushNotification {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class PushNotification extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -43,10 +39,5 @@ public class PushNotification {
 
     @Column(name = "sent_at")
     private Instant sentAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
 
 }

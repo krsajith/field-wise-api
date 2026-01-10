@@ -19,7 +19,7 @@ public abstract class BaseEntity implements Serializable {
     private Long id;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
+    @Column(name = "created_at",updatable = false)
     private Instant createdAt;
 
     @ColumnDefault("CURRENT_TIMESTAMP")

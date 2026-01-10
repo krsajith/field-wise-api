@@ -13,11 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "expenses")
-public class Expens {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Expens extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -58,14 +54,5 @@ public class Expens {
 
     @Column(name = "remarks", length = Integer.MAX_VALUE)
     private String remarks;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

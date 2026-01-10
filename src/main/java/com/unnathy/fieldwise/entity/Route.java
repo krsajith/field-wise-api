@@ -11,11 +11,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "routes")
-public class Route {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Route extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -33,14 +29,5 @@ public class Route {
     @ColumnDefault("true")
     @Column(name = "is_active")
     private Boolean isActive;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

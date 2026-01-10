@@ -13,11 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "collections")
-public class Collection {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Collection extends BaseEntity {
 
     @Column(name = "collection_number", nullable = false, length = 50)
     private String collectionNumber;
@@ -78,14 +74,5 @@ public class Collection {
 
     @Column(name = "receipt_photo_url", length = 500)
     private String receiptPhotoUrl;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

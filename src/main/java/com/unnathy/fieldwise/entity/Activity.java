@@ -13,11 +13,7 @@ import java.time.LocalTime;
 @Setter
 @Entity
 @Table(name = "activities")
-public class Activity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Activity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -60,14 +56,5 @@ public class Activity {
 
     @Column(name = "outcome", length = Integer.MAX_VALUE)
     private String outcome;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

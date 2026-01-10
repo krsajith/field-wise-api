@@ -1,4 +1,4 @@
-package com.taomish.web.common;
+package com.unnathy.fieldwise.core;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 

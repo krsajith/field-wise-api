@@ -12,11 +12,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class User extends BaseEntity {
 
     @Column(name = "username", length = 100)
     private String username;
@@ -66,14 +62,5 @@ public class User {
 
     @Column(name = "last_login_at")
     private Instant lastLoginAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

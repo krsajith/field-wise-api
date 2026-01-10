@@ -1,22 +1,23 @@
-package com.taomish.web.service;
+package com.unnathy.fieldwise.core;
 
-import com.taomish.common.domain.TaomishError;
-import com.taomish.common.jpa.BaseDto;
-import com.taomish.web.security.models.User;
+import lombok.EqualsAndHashCode;
+
+import com.unnathy.fieldwise.dto.BaseDTO;
+import com.unnathy.fieldwise.entity.User;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.Serializable;
 import java.util.List;
 
-public interface BasicEntityService<T extends BaseDto, I extends Serializable> {
+public interface BasicEntityService<T extends BaseDTO, I extends Serializable> {
 
-    T post(T data, String authorization, User principal) throws TaomishError;
+    T post(T data, String authorization, User principal) throws UnnathyError;
 
-    T patch(T data, String authorization, User principal) throws TaomishError;
+    T patch(T data, String authorization, User principal) throws UnnathyError;
 
-    T put(@RequestBody T data, String authorization, User principal) throws TaomishError;
+    T put(@RequestBody T data, String authorization, User principal) throws UnnathyError;
 
-    List<T> get(String authorization, User principal)  throws TaomishError;
+    List<T> get(String authorization, User principal)  throws UnnathyError;
 
-    T getWithId(String authorization, User principal, I id) throws TaomishError;
+    T getWithId(String authorization, User principal, I id) throws UnnathyError;
 }

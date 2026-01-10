@@ -12,11 +12,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "shop_visits")
-public class ShopVisit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class ShopVisit extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -59,14 +55,5 @@ public class ShopVisit {
 
     @Column(name = "is_productive")
     private Boolean isProductive;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

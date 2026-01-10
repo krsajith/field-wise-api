@@ -11,11 +11,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "permissions")
-public class Permission {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Permission extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -28,10 +24,5 @@ public class Permission {
 
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
 
 }

@@ -1,6 +1,17 @@
-# Entity Refactoring Utilities
+# Code Generation Utilities
 
-This directory contains utilities for refactoring entity classes to use a common `BaseEntity` base class.
+This directory contains Python utilities for automating common tasks in the FieldWise project.
+
+## Available Scripts
+
+1. **refactor_entities.py** - Refactor entities to extend BaseEntity
+2. **generate_dtos.py** - Generate DTO classes for all entities
+
+---
+
+## 1. Entity Refactoring (refactor_entities.py)
+
+Refactors entity classes to use a common `BaseEntity` base class.
 
 ## What the Script Does
 
@@ -127,3 +138,68 @@ If some entities need special handling:
 1. Restore them from git: `git checkout -- path/to/Entity.java`
 2. Manually edit as needed
 3. Ensure they still extend `BaseEntity`
+
+---
+
+## 2. DTO Generation (generate_dtos.py)
+
+Automatically generates Data Transfer Object (DTO) classes for all entities.
+
+### What it Does
+
+- Creates a `BaseDTO` class with common fields
+- Generates DTOs for all entities
+- Converts relationships to ID fields (e.g., `Shop shop` → `Long shopId`)
+- Adds Lombok annotations (`@Data`, `@NoArgsConstructor`, `@AllArgsConstructor`)
+- Skips collection relationships by default
+
+### Usage
+
+```bash
+cd utils
+python generate_dtos.py
+```
+
+### Generated Output
+
+```
+src/main/java/com/unnathy/fieldwise/
+└── dto/
+    ├── BaseDTO.java
+    ├── OrderDTO.java
+    ├── ProductDTO.java
+    └── ... (one DTO per entity)
+```
+
+### Example Generated DTO
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrderDTO extends BaseDTO {
+    private String orderNumber;
+    private Long shopId;
+    private Long userId;
+    private BigDecimal totalAmount;
+    private String status;
+}
+```
+
+### Next Steps After Generation
+
+1. Review generated DTOs
+2. Customize as needed (add nested DTOs, computed fields, etc.)
+3. Create mappers (MapStruct or manual)
+4. Use DTOs in controllers and services
+
+**For detailed documentation, see [DTO_GENERATION_README.md](DTO_GENERATION_README.md)**
+
+---
+
+## General Tips
+
+- Always commit your code before running these scripts
+- Review changes before committing
+- Run your build and tests after generation
+- These scripts use only Python standard library (no dependencies needed)

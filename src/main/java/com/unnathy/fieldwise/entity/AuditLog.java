@@ -14,11 +14,7 @@ import java.util.Map;
 @Setter
 @Entity
 @Table(name = "audit_logs")
-public class AuditLog {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class AuditLog extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -46,10 +42,5 @@ public class AuditLog {
 
     @Column(name = "user_agent", length = Integer.MAX_VALUE)
     private String userAgent;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
 
 }

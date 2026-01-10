@@ -12,11 +12,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "location_logs")
-public class LocationLog {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class LocationLog extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -39,10 +35,5 @@ public class LocationLog {
 
     @Column(name = "\"timestamp\"", nullable = false)
     private Instant timestamp;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
 
 }

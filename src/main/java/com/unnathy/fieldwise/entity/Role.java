@@ -11,25 +11,12 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "roles")
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Role extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
 
 }

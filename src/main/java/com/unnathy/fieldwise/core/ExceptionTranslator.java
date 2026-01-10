@@ -1,7 +1,6 @@
-package com.taomish.web.common;
+package com.unnathy.fieldwise.core;
 
-import com.taomish.common.domain.TaomishError;
-import org.jetbrains.annotations.NotNull;
+
 import org.slf4j.MDC;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,8 +17,8 @@ public class ExceptionTranslator {
     public static final String REQUEST_ID = "requestId";
 
     @ExceptionHandler
-    public ResponseEntity<Map<String,Object>> handleTaomishError(
-            TaomishError ex,
+    public ResponseEntity<Map<String,Object>> handleUnnathyError(
+            UnnathyError ex,
             NativeWebRequest request
     ) {
 
@@ -28,15 +27,15 @@ public class ExceptionTranslator {
     }
 
     @ExceptionHandler
-    public ResponseEntity<Map<String,Object>> handleTaomishError(
-            java.lang.Exception ex,
+    public ResponseEntity<Map<String,Object>> handleUnnathyError(
+            Exception ex,
             NativeWebRequest request
     ) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).headers(getResponseHeaders())
                 .body(Map.of("errorCode",ex.getMessage()));
     }
 
-    @NotNull
+
     private static HttpHeaders getResponseHeaders() {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set(REQUEST_ID,MDC.get(REQUEST_ID));
