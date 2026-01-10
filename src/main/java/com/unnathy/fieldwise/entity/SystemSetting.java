@@ -30,6 +30,6 @@ public class SystemSetting extends BaseEntity {
     private Boolean isPublic;
 
     @Column(name = "updated_by")
-    private Long updatedBy;
+    private Long updatedById;
 
 }

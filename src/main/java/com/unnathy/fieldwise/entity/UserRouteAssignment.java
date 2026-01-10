@@ -16,10 +16,10 @@ import java.time.LocalDate;
 public class UserRouteAssignment extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "route_id", nullable = false)
-    private Long route;
+    private Long routeId;
 
     @Column(name = "assigned_date", nullable = false)
     private LocalDate assignedDate;

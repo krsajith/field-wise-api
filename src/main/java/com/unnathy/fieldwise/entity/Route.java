@@ -20,7 +20,7 @@ public class Route extends BaseEntity {
     private String code;
 
     @Column(name = "district_id")
-    private Long district;
+    private Long districtId;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;

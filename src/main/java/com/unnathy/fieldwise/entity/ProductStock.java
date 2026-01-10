@@ -15,10 +15,10 @@ import java.time.Instant;
 public class ProductStock extends BaseEntity {
 
     @Column(name = "product_id", nullable = false)
-    private Long product;
+    private Long productId;
 
     @Column(name = "shop_id")
-    private Long shop;
+    private Long shopId;
 
     @ColumnDefault("0")
     @Column(name = "quantity", nullable = false, precision = 10, scale = 2)

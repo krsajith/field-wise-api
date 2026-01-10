@@ -17,7 +17,7 @@ import java.util.Map;
 public class AuditLog extends BaseEntity {
 
     @Column(name = "user_id")
-    private Long user;
+    private Long userId;
 
     @Column(name = "table_name", nullable = false, length = 100)
     private String tableName;

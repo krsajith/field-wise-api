@@ -14,10 +14,10 @@ import org.hibernate.annotations.ColumnDefault;
 public class Feedback extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "shop_id")
-    private Long shop;
+    private Long shopId;
 
     @Column(name = "feedback_type", nullable = false, length = 50)
     private String feedbackType;

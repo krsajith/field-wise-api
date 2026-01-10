@@ -17,7 +17,7 @@ import java.util.Map;
 public class PushNotification extends BaseEntity {
 
     @Column(name = "user_id")
-    private Long user;
+    private Long userId;
 
     @Column(name = "title", nullable = false)
     private String title;

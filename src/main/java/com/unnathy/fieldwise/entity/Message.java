@@ -14,10 +14,10 @@ import java.time.Instant;
 public class Message extends BaseEntity {
 
     @Column(name = "from_user_id")
-    private Long fromUser;
+    private Long fromUserId;
 
     @Column(name = "to_user_id")
-    private Long toUser;
+    private Long toUserId;
 
     @ColumnDefault("'DIRECT'")
     @Column(name = "message_type", length = 50)

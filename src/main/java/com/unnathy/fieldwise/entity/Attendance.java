@@ -15,7 +15,7 @@ import java.time.Instant;
 public class Attendance extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "punch_in_time", nullable = false)
     private Instant punchInTime;

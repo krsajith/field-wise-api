@@ -14,7 +14,7 @@ import java.time.Instant;
 public class UserDevice extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "device_token", nullable = false)
     private String deviceToken;

@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Enquiry extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "customer_name", nullable = false)
     private String customerName;

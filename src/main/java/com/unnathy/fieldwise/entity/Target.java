@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Target extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "target_type", nullable = false, length = 50)
     private String targetType;
@@ -43,6 +43,6 @@ public class Target extends BaseEntity {
     private BigDecimal achievementPercentage;
 
     @Column(name = "created_by")
-    private Long createdBy;
+    private Long createdById;
 
 }

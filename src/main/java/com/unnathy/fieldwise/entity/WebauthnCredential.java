@@ -14,7 +14,7 @@ import java.time.Instant;
 public class WebauthnCredential extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "credential_id", nullable = false)
     private byte[] credentialId;

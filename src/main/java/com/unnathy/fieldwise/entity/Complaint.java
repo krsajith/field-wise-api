@@ -14,10 +14,10 @@ import java.time.Instant;
 public class Complaint extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "shop_id")
-    private Long shop;
+    private Long shopId;
 
     @Column(name = "complaint_type", nullable = false, length = 50)
     private String complaintType;
@@ -37,7 +37,7 @@ public class Complaint extends BaseEntity {
     private String status;
 
     @Column(name = "assigned_to")
-    private Long assignedTo;
+    private Long assignedToId;
 
     @Column(name = "resolved_at")
     private Instant resolvedAt;

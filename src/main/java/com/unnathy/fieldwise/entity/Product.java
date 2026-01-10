@@ -22,10 +22,10 @@ public class Product extends BaseEntity {
     private String code;
 
     @Column(name = "category_id", nullable = false)
-    private Long category;
+    private Long categoryId;
 
     @Column(name = "sub_category_id")
-    private Long subCategory;
+    private Long subCategoryId;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;

@@ -19,13 +19,13 @@ public class Order extends BaseEntity {
     private String orderNumber;
 
     @Column(name = "shop_id", nullable = false)
-    private Long shop;
+    private Long shopId;
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "shop_visit_id")
-    private Long shopVisit;
+    private Long shopVisitId;
 
     @Column(name = "order_date", nullable = false)
     private LocalDate orderDate;
@@ -37,10 +37,10 @@ public class Order extends BaseEntity {
     private String deliveryMode;
 
     @Column(name = "payment_mode_id")
-    private Long paymentMode;
+    private Long paymentModeId;
 
     @Column(name = "transportation_mode_id")
-    private Long transportationMode;
+    private Long transportationModeId;
 
     @Column(name = "subtotal", nullable = false, precision = 12, scale = 2)
     private BigDecimal subtotal;
@@ -61,7 +61,7 @@ public class Order extends BaseEntity {
     private String status;
 
     @Column(name = "approved_by")
-    private Long approvedBy;
+    private Long approvedById;
 
     @Column(name = "approved_at")
     private Instant approvedAt;

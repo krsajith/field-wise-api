@@ -13,13 +13,13 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "expenses")
-public class Expens extends BaseEntity {
+public class Expense extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "category_id", nullable = false)
-    private Long category;
+    private Long categoryId;
 
     @Column(name = "expense_date", nullable = false)
     private LocalDate expenseDate;
@@ -38,7 +38,7 @@ public class Expens extends BaseEntity {
     private String status;
 
     @Column(name = "approved_by")
-    private Long approvedBy;
+    private Long approvedById;
 
     @Column(name = "approved_at")
     private Instant approvedAt;

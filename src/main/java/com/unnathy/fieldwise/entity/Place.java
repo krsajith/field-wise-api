@@ -14,7 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 public class Place extends BaseEntity {
 
     @Column(name = "district_id", nullable = false)
-    private Long district;
+    private Long districtId;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;

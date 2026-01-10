@@ -1,5 +1,6 @@
-package com.unnathy.fieldwise.entity;
+package com.unnathy.fieldwise;
 
+import com.unnathy.fieldwise.entity.BaseEntity;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

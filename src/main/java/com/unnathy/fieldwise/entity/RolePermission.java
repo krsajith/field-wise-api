@@ -13,9 +13,9 @@ import lombok.Setter;
 public class RolePermission extends BaseEntity {
 
     @Column(name = "role_id", nullable = false)
-    private Long role;
+    private Long roleId;
 
     @Column(name = "permission_id", nullable = false)
-    private Long permission;
+    private Long permissionId;
 
 }

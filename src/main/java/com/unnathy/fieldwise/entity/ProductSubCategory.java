@@ -14,7 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 public class ProductSubCategory extends BaseEntity {
 
     @Column(name = "category_id", nullable = false)
-    private Long category;
+    private Long categoryId;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;

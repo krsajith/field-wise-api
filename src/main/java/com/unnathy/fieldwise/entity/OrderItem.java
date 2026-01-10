@@ -19,10 +19,10 @@ public class OrderItem extends BaseEntity {
 
     @OnDelete(action = OnDeleteAction.CASCADE)
     @Column(name = "order_id", nullable = false)
-    private Long order;
+    private Long orderId;
 
     @Column(name = "product_id", nullable = false)
-    private Long product;
+    private Long productId;
 
     @Column(name = "quantity", nullable = false, precision = 10, scale = 2)
     private BigDecimal quantity;

@@ -16,13 +16,13 @@ import java.time.Instant;
 public class ShopVisit extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "shop_id", nullable = false)
-    private Long shop;
+    private Long shopId;
 
     @Column(name = "route_id")
-    private Long route;
+    private Long routeId;
 
     @Column(name = "check_in_time", nullable = false)
     private Instant checkInTime;

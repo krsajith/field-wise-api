@@ -22,7 +22,7 @@ public class Shop extends BaseEntity {
     private String code;
 
     @Column(name = "shop_type_id")
-    private Long shopType;
+    private Long shopTypeId;
 
     @Column(name = "contact_person")
     private String contactPerson;
@@ -55,13 +55,13 @@ public class Shop extends BaseEntity {
     private String addressLine2;
 
     @Column(name = "place_id")
-    private Long place;
+    private Long placeId;
 
     @Column(name = "district_id")
-    private Long district;
+    private Long districtId;
 
     @Column(name = "state_id")
-    private Long state;
+    private Long stateId;
 
     @Column(name = "pincode", length = 10)
     private String pincode;
@@ -77,10 +77,10 @@ public class Shop extends BaseEntity {
     private Integer geofenceRadius;
 
     @Column(name = "route_id")
-    private Long route;
+    private Long routeId;
 
     @Column(name = "bank_id")
-    private Long bank;
+    private Long bankId;
 
     @Column(name = "bank_account_number", length = 50)
     private String bankAccountNumber;
@@ -89,7 +89,7 @@ public class Shop extends BaseEntity {
     private String bankIfscCode;
 
     @Column(name = "payment_term_id")
-    private Long paymentTerm;
+    private Long paymentTermId;
 
     @Column(name = "credit_limit", precision = 12, scale = 2)
     private BigDecimal creditLimit;
@@ -103,10 +103,10 @@ public class Shop extends BaseEntity {
     private Boolean isVerified;
 
     @Column(name = "created_by")
-    private Long createdBy;
+    private Long createdById;
 
     @Column(name = "verified_by")
-    private Long verifiedBy;
+    private Long verifiedById;
 
     @Column(name = "shop_photo_url", length = 500)
     private String shopPhotoUrl;

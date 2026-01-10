@@ -13,7 +13,7 @@ import lombok.Setter;
 public class File extends BaseEntity {
 
     @Column(name = "uploaded_by")
-    private Long uploadedBy;
+    private Long uploadedById;
 
     @Column(name = "file_name", nullable = false)
     private String fileName;

@@ -19,13 +19,13 @@ public class Collection extends BaseEntity {
     private String collectionNumber;
 
     @Column(name = "shop_id", nullable = false)
-    private Long shop;
+    private Long shopId;
 
     @Column(name = "user_id", nullable = false)
-    private Long user;
+    private Long userId;
 
     @Column(name = "order_id")
-    private Long order;
+    private Long orderId;
 
     @Column(name = "collection_date", nullable = false)
     private LocalDate collectionDate;
@@ -34,7 +34,7 @@ public class Collection extends BaseEntity {
     private BigDecimal amount;
 
     @Column(name = "payment_mode", nullable = false, length = 50)
-    private String paymentMode;
+    private String paymentModeId;
 
     @Column(name = "cheque_number", length = 50)
     private String chequeNumber;
@@ -43,7 +43,7 @@ public class Collection extends BaseEntity {
     private LocalDate chequeDate;
 
     @Column(name = "bank_id")
-    private Long bank;
+    private Long bankId;
 
     @Column(name = "transaction_reference", length = 100)
     private String transactionReference;
@@ -53,7 +53,7 @@ public class Collection extends BaseEntity {
     private String status;
 
     @Column(name = "approved_by")
-    private Long approvedBy;
+    private Long approvedById;
 
     @Column(name = "approved_at")
     private Instant approvedAt;

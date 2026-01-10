@@ -33,10 +33,10 @@ public class User extends BaseEntity {
     private String lastName;
 
     @Column(name = "role_id", nullable = false)
-    private Long role;
+    private Long roleId;
 
     @Column(name = "reporting_manager_id")
-    private Long reportingManager;
+    private Long reportingManagerId;
 
     @Column(name = "employee_code", length = 50)
     private String employeeCode;
