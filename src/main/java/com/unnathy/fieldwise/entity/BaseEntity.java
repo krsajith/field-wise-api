@@ -25,4 +25,5 @@ public abstract class BaseEntity implements Serializable {
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "updated_at")
     private Instant updatedAt;
+
 }
