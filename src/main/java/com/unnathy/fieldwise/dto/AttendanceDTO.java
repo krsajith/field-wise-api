@@ -16,8 +16,6 @@ public class AttendanceDTO extends BaseDTO {
     private Long userId;
     private Instant punchInTime;
     private Instant punchOutTime;
-    private BigDecimal punchInLatitude;
-    private BigDecimal punchInLongitude;
     private String punchInLocationAddress;
     private BigDecimal punchOutLatitude;
     private BigDecimal punchOutLongitude;

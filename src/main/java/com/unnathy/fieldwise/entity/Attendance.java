@@ -23,12 +23,6 @@ public class Attendance extends BaseEntity {
     @Column(name = "punch_out_time")
     private Instant punchOutTime;
 
-    @Column(name = "punch_in_latitude", precision = 10, scale = 8)
-    private BigDecimal punchInLatitude;
-
-    @Column(name = "punch_in_longitude", precision = 11, scale = 8)
-    private BigDecimal punchInLongitude;
-
     @Column(name = "punch_in_location_address", length = Integer.MAX_VALUE)
     private String punchInLocationAddress;
 

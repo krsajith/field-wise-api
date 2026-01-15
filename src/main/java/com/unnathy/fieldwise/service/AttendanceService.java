@@ -41,8 +41,8 @@ public class AttendanceService implements BasicEntityService<AttendanceDTO, Long
             Instant punchOutTime = Instant.now();
 
             latest.setPunchOutTime(punchOutTime);
-            latest.setPunchOutLatitude(data.getPunchInLatitude());
-            latest.setPunchOutLongitude(data.getPunchInLongitude());
+            latest.setPunchOutLatitude(data.getLatitude());
+            latest.setPunchOutLongitude(data.getLongitude());
             if (data.getBikePhoto() != null) {
                 latest.setBikePhoto(data.getBikePhoto());
             }
