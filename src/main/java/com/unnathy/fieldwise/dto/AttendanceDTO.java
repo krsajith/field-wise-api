@@ -25,4 +25,12 @@ public class AttendanceDTO extends BaseDTO {
     private Integer workDurationMinutes;
     private Boolean isVerifiedBiometric;
     private String notes;
+    private String bikePhoto;
+    private Integer bikeStartKm;
+    private String otherNote;
+    private String selectedMode;
+    private String userName;
+    private String profilePhotoUrl;
+    private String punchStatus;
+    private Instant lastActionTime;
 }
