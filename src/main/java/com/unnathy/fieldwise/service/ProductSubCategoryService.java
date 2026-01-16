@@ -51,4 +51,11 @@ public class ProductSubCategoryService implements BasicEntityService<ProductSubC
                 .map(entity -> modelMapperService.map(entity, ProductSubCategoryDTO.class))
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "ProductSubCategory not found", null));
     }
+
+    public List<ProductSubCategoryDTO> getByCategory(String authorization, User principal, Long categoryId)
+            throws UnnathyError {
+        return repository.findByCategoryId(categoryId).stream()
+                .map(entity -> modelMapperService.map(entity, ProductSubCategoryDTO.class))
+                .collect(Collectors.toList());
+    }
 }

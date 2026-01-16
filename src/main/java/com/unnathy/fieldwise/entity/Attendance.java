@@ -57,4 +57,13 @@ public class Attendance extends BaseEntity {
     @Column(name = "selected_mode")
     private String selectedMode;
 
+    @Column(name = "bike_photo_out")
+    private String bikePhotoOut;
+
+    @Column(name = "bike_end_km")
+    private Integer bikeEndKm;
+
+    @Column(name = "other_note_end", length = Integer.MAX_VALUE)
+    private String otherNoteEnd;
+
 }

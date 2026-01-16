@@ -1,8 +1,15 @@
+server:
+  port: ${FIELD-WISE-PORT:8088}
+  servlet:
+    context-path: /field-wise
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: password
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: password
+    url: jdbc:postgresql://40.90.168.50:5432/garage?currentSchema=field-wise
+    username: nokin
+    password: Anish!1983
     driver-class-name: org.postgresql.Driver
 
     hikari:

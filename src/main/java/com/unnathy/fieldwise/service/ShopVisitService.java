@@ -4,9 +4,11 @@ import com.unnathy.fieldwise.core.BasicEntityService;
 import com.unnathy.fieldwise.core.ModelMapperService;
 import com.unnathy.fieldwise.core.UnnathyError;
 import com.unnathy.fieldwise.dto.ShopVisitDTO;
+import com.unnathy.fieldwise.dto.ShopVisitViewDTO;
 import com.unnathy.fieldwise.entity.ShopVisit;
 import com.unnathy.fieldwise.entity.User;
 import com.unnathy.fieldwise.repo.ShopVisitRepository;
+import com.unnathy.fieldwise.repo.ShopVisitViewRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class ShopVisitService implements BasicEntityService<ShopVisitDTO, Long> {
 
     private final ShopVisitRepository repository;
+    private final ShopVisitViewRepository viewRepository;
     private final ModelMapperService modelMapperService;
 
     @Override
@@ -50,5 +53,11 @@ public class ShopVisitService implements BasicEntityService<ShopVisitDTO, Long> 
         return repository.findById(id)
                 .map(entity -> modelMapperService.map(entity, ShopVisitDTO.class))
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "ShopVisit not found", null));
+    }
+
+    public List<ShopVisitViewDTO> getShopVisitView() {
+        return viewRepository.findAll().stream()
+                .map(entity -> modelMapperService.map(entity, ShopVisitViewDTO.class))
+                .collect(Collectors.toList());
     }
 }

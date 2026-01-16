@@ -2,11 +2,18 @@ package com.unnathy.fieldwise.controller;
 
 import com.unnathy.fieldwise.core.BaseController;
 import com.unnathy.fieldwise.core.BasicEntityService;
+import com.unnathy.fieldwise.core.UnnathyError;
 import com.unnathy.fieldwise.dto.ProductDTO;
+import com.unnathy.fieldwise.dto.ProductSubCategoryDTO;
+import com.unnathy.fieldwise.entity.Product;
+import com.unnathy.fieldwise.entity.User;
 import com.unnathy.fieldwise.service.ProductService;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -18,5 +25,15 @@ public class ProductController implements BaseController<ProductDTO, Long> {
     @Override
     public BasicEntityService<ProductDTO, Long> getService() {
         return service;
+    }
+
+
+    @GetMapping("/by-category/{categoryId}/{subCategoryId}")
+    public List<ProductDTO> getByCategory(
+            @PathVariable Long categoryId,
+            @PathVariable Long subCategoryId,
+            @Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
+            @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
+        return service.getWithCategoryAndSubCategory(categoryId,subCategoryId);
     }
 }

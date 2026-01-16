@@ -44,16 +44,13 @@ public class AttendanceService implements BasicEntityService<AttendanceDTO, Long
             latest.setPunchOutLatitude(data.getLatitude());
             latest.setPunchOutLongitude(data.getLongitude());
             if (data.getBikePhoto() != null) {
-                latest.setBikePhoto(data.getBikePhoto());
+                latest.setBikePhotoOut(data.getBikePhoto());
             }
             if (data.getBikeStartKm() != null) {
-                latest.setBikeStartKm(data.getBikeStartKm());
+                latest.setBikeEndKm(data.getBikeStartKm());
             }
             if (data.getOtherNote() != null) {
-                latest.setOtherNote(data.getOtherNote());
-            }
-            if (data.getSelectedMode() != null) {
-                latest.setSelectedMode(data.getSelectedMode());
+                latest.setOtherNoteEnd(data.getOtherNote());
             }
             if (latest.getPunchInTime() != null) {
                 long minutes = Duration.between(latest.getPunchInTime(), punchOutTime).toMinutes();
@@ -64,7 +61,15 @@ public class AttendanceService implements BasicEntityService<AttendanceDTO, Long
 
             saved = repository.save(latest);
         } else {
-            Attendance entity = modelMapperService.map(data, Attendance.class);
+            Attendance entity = new Attendance();
+
+            entity.setBikeStartKm(data.getBikeStartKm());
+            entity.setOtherNote(data.getOtherNote());
+            entity.setBikePhoto(data.getBikePhoto());
+            entity.setLatitude(data.getLatitude());
+            entity.setLongitude(data.getLongitude());
+            entity.setSelectedMode(data.getSelectedMode());
+
             entity.setUserId(userId);
             entity.setPunchInTime(Instant.now());
             saved = repository.save(entity);
