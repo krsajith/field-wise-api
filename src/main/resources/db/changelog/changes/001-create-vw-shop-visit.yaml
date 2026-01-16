@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-vw-shop-visit
+      author: codex
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/001-create-vw-shop-visit.sql
+            relativeToChangelogFile: false
