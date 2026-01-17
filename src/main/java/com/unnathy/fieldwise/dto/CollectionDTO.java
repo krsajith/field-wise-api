@@ -28,8 +28,6 @@ public class CollectionDTO extends BaseDTO {
     private String status;
     private Long approvedById;
     private Instant approvedAt;
-    private BigDecimal latitude;
-    private BigDecimal longitude;
     private String remarks;
     private String receiptPhotoUrl;
 }

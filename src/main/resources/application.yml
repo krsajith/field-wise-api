@@ -41,3 +41,7 @@ fieldwise:
   jwt:
     secret: ${FIELDWISE_JWT_SECRET:change-me-please-change-me-please}
     expiration-ms: ${FIELDWISE_JWT_EXPIRATION_MS:86400000}
+
+logging:
+  file:
+    path: ${FIELDWISE_LOG_PATH:logs}

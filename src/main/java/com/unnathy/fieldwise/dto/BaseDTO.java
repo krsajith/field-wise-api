@@ -7,10 +7,11 @@ import java.time.Instant;
 
 @Data
 public abstract class BaseDTO {
-
     private Long id;
     private Instant createdAt;
     private Instant updatedAt;
     private BigDecimal latitude;
     private BigDecimal longitude;
+    private Long createdBy;
+    private Long updatedBy;
 }

@@ -58,12 +58,6 @@ public class Collection extends BaseEntity {
     @Column(name = "approved_at")
     private Instant approvedAt;
 
-    @Column(name = "latitude", precision = 10, scale = 8)
-    private BigDecimal latitude;
-
-    @Column(name = "longitude", precision = 11, scale = 8)
-    private BigDecimal longitude;
-
     @Column(name = "remarks", length = Integer.MAX_VALUE)
     private String remarks;
 

@@ -29,20 +29,8 @@ public class ShopVisitView extends BaseEntity {
     @Column(name = "check_in_time")
     private Instant checkInTime;
 
-    @Column(name = "check_in_latitude", precision = 10, scale = 8)
-    private BigDecimal checkInLatitude;
-
-    @Column(name = "check_in_longitude", precision = 11, scale = 8)
-    private BigDecimal checkInLongitude;
-
     @Column(name = "check_out_time")
     private Instant checkOutTime;
-
-    @Column(name = "check_out_latitude", precision = 10, scale = 8)
-    private BigDecimal checkOutLatitude;
-
-    @Column(name = "check_out_longitude", precision = 11, scale = 8)
-    private BigDecimal checkOutLongitude;
 
     @Column(name = "visit_duration_minutes")
     private Integer visitDurationMinutes;

@@ -27,11 +27,16 @@ public class ShopVisitService implements BasicEntityService<ShopVisitDTO, Long> 
     @Override
     public ShopVisitDTO post(ShopVisitDTO data, String authorization, User principal) throws UnnathyError {
         ShopVisit entity = modelMapperService.map(data, ShopVisit.class);
+        setDetails(principal, entity);
+        ShopVisit saved = repository.save(entity);
+        return modelMapperService.map(saved, ShopVisitDTO.class);
+    }
+
+    private static void setDetails(User principal, ShopVisit entity) {
         if(entity.getCheckInTime()==null){
             entity.setCheckInTime(Instant.now());
         }
-        ShopVisit saved = repository.save(entity);
-        return modelMapperService.map(saved, ShopVisitDTO.class);
+        entity.setUserId(principal.getId());
     }
 
     @Override
@@ -42,6 +47,7 @@ public class ShopVisitService implements BasicEntityService<ShopVisitDTO, Long> 
     @Override
     public ShopVisitDTO put(ShopVisitDTO data, String authorization, User principal) throws UnnathyError {
         ShopVisit entity = modelMapperService.map(data, ShopVisit.class);
+        setDetails(principal,entity);
         ShopVisit saved = repository.save(entity);
         return modelMapperService.map(saved, ShopVisitDTO.class);
     }
@@ -64,5 +70,13 @@ public class ShopVisitService implements BasicEntityService<ShopVisitDTO, Long> 
         return viewRepository.findAll().stream()
                 .map(entity -> modelMapperService.map(entity, ShopVisitViewDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    public ShopVisitDTO checkout(Long id) throws UnnathyError {
+        ShopVisit entity = repository.findById(id)
+                .orElseThrow(() -> new UnnathyError("NOT_FOUND", "ShopVisit not found", null));
+        entity.setCheckOutTime(Instant.now());
+        ShopVisit saved = repository.save(entity);
+        return modelMapperService.map(saved, ShopVisitDTO.class);
     }
 }

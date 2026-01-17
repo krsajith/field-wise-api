@@ -17,11 +17,7 @@ public class ShopVisitDTO extends BaseDTO {
     private Long shopId;
     private Long routeId;
     private Instant checkInTime;
-    private BigDecimal checkInLatitude;
-    private BigDecimal checkInLongitude;
     private Instant checkOutTime;
-    private BigDecimal checkOutLatitude;
-    private BigDecimal checkOutLongitude;
     private Integer visitDurationMinutes;
     private String visitPurpose;
     private String notes;

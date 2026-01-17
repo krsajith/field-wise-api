@@ -66,12 +66,6 @@ public class Shop extends BaseEntity {
     @Column(name = "pincode", length = 10)
     private String pincode;
 
-    @Column(name = "latitude", precision = 10, scale = 8)
-    private BigDecimal latitude;
-
-    @Column(name = "longitude", precision = 11, scale = 8)
-    private BigDecimal longitude;
-
     @ColumnDefault("100")
     @Column(name = "geofence_radius")
     private Integer geofenceRadius;
