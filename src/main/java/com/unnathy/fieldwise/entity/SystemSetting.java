@@ -29,7 +29,4 @@ public class SystemSetting extends BaseEntity {
     @Column(name = "is_public")
     private Boolean isPublic;
 
-    @Column(name = "updated_by")
-    private Long updatedById;
-
 }

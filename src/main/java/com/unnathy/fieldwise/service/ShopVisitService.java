@@ -9,6 +9,8 @@ import com.unnathy.fieldwise.entity.ShopVisit;
 import com.unnathy.fieldwise.entity.User;
 import com.unnathy.fieldwise.repo.ShopVisitRepository;
 import com.unnathy.fieldwise.repo.ShopVisitViewRepository;
+
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,9 @@ public class ShopVisitService implements BasicEntityService<ShopVisitDTO, Long> 
     @Override
     public ShopVisitDTO post(ShopVisitDTO data, String authorization, User principal) throws UnnathyError {
         ShopVisit entity = modelMapperService.map(data, ShopVisit.class);
+        if(entity.getCheckInTime()==null){
+            entity.setCheckInTime(Instant.now());
+        }
         ShopVisit saved = repository.save(entity);
         return modelMapperService.map(saved, ShopVisitDTO.class);
     }

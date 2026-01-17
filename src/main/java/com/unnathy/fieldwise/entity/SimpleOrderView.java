@@ -25,6 +25,9 @@ public class SimpleOrderView {
     @Column(name = "created_at")
     private Instant createdAt;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     @Column(name = "quantity", precision = 10, scale = 2)
     private BigDecimal quantity;
 

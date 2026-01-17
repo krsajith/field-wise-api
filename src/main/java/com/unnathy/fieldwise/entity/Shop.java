@@ -102,9 +102,6 @@ public class Shop extends BaseEntity {
     @Column(name = "is_verified")
     private Boolean isVerified;
 
-    @Column(name = "created_by")
-    private Long createdById;
-
     @Column(name = "verified_by")
     private Long verifiedById;
 

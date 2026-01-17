@@ -4,6 +4,8 @@ server:
   servlet:
     context-path: /field-wise
 spring:
+  liquibase:
+    enabled: false
   datasource:
 #    url: jdbc:postgresql://localhost:5432/postgres
 #    username: postgres
@@ -28,6 +30,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        jdbc:
+          time_zone: UTC
 
   sql:
     init:

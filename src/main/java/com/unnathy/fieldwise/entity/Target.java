@@ -42,7 +42,5 @@ public class Target extends BaseEntity {
     @Column(name = "achievement_percentage", precision = 5, scale = 2)
     private BigDecimal achievementPercentage;
 
-    @Column(name = "created_by")
-    private Long createdById;
 
 }
