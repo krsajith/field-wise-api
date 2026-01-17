@@ -3,6 +3,7 @@ package com.unnathy.fieldwise.core;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.unnathy.fieldwise.common.domain.HttpMethod;
 import com.unnathy.fieldwise.common.domain.TaomishError;
+import com.unnathy.fieldwise.security.EncryptionUtil;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

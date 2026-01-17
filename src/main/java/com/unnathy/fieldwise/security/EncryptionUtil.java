@@ -1,4 +1,4 @@
-package com.unnathy.fieldwise.core;
+package com.unnathy.fieldwise.security;
 
 public final class EncryptionUtil {
     private EncryptionUtil() {

@@ -1,4 +1,4 @@
-package com.unnathy.fieldwise.core;
+package com.unnathy.fieldwise.security;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
