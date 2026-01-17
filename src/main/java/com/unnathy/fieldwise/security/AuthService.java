@@ -39,7 +39,17 @@ public class AuthService {
         userRepository.save(user);
 
         String token = jwtUtil.generateToken(user);
-        return new AuthResponse(token, user.getId(), user.getUsername(), user.getEmail());
+        return new AuthResponse(
+                token,
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmployeeCode(),
+                user.getProfilePhotoUrl(),
+                user.getRoleId()
+        );
     }
 
     private boolean matchesPassword(String raw, String stored) {

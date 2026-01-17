@@ -14,6 +14,9 @@ public class OrderItemDTO extends BaseDTO {
 
     private Long orderId;
     private Long productId;
+    private Long shopId;
+    private Long shopVisitId;
+    private Long routeId;
     private BigDecimal quantity;
     private BigDecimal unitPrice;
     private BigDecimal taxRate;

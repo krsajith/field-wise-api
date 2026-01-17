@@ -12,4 +12,9 @@ public class AuthResponse {
     private Long userId;
     private String username;
     private String email;
+    private String firstName;
+    private String lastName;
+    private String employeeCode;
+    private String profilePhotoUrl;
+    private Long roleId;
 }
