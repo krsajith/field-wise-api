@@ -24,7 +24,8 @@ public class OrderItemService implements BasicEntityService<OrderItemDTO, Long> 
     private final OrderItemRepository repository;
     private final ModelMapperService modelMapperService;
     private final OrderService orderService;
-
+    private final ViewOrderItemRepository viewOrderItemRepository;
+    
     @Override
     public OrderItemDTO post(OrderItemDTO data, String authorization, User principal) throws UnnathyError {
         applyLineTotal(data);
@@ -62,9 +63,15 @@ public class OrderItemService implements BasicEntityService<OrderItemDTO, Long> 
     }
 
 
-    public List<OrderItemDTO> getOrderItemView(String authorization, User principal) throws UnnathyError {
-        return repository.findAll().stream()
-                .map(entity -> modelMapperService.map(entity, OrderItemDTO.class))
+    public List<ViewOrderItemDTO> getOrderItemView(String authorization, User principal) throws UnnathyError {
+        return viewOrderItemRepository.findAll().stream()
+                .map(entity -> modelMapperService.map(entity, ViewOrderItemDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<ViewOrderItemDTO> getOrderItemViewByOrderId(Long orderId) {
+        return viewOrderItemRepository.findAllByOrderId(orderId).stream()
+                .map(entity -> modelMapperService.map(entity, ViewOrderItemDTO.class))
                 .collect(Collectors.toList());
     }
 

@@ -2,6 +2,7 @@ package com.unnathy.fieldwise.order;
 
 import com.unnathy.fieldwise.core.BaseController;
 import com.unnathy.fieldwise.core.BasicEntityService;
+import com.unnathy.fieldwise.core.UnnathyError;
 import com.unnathy.fieldwise.orderview.OrderViewDTO;
 import com.unnathy.fieldwise.user.User;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,6 +39,14 @@ public class OrderController implements BaseController<OrderDTO, Long> {
             @Parameter(hidden = true) @AuthenticationPrincipal User principal,
             @PathVariable Long userId) {
         return service.getOrderViewByUserId(userId);
+    }
+
+    @GetMapping("/view/{id}")
+    public OrderViewDTO getOrderViewById(
+            @Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
+            @Parameter(hidden = true) @AuthenticationPrincipal User principal,
+            @PathVariable Long id) throws UnnathyError {
+        return service.getOrderViewById(id);
     }
 
     @GetMapping("/status/{status}")

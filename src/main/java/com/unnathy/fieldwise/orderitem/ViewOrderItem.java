@@ -1,6 +1,5 @@
 package com.unnathy.fieldwise.orderitem;
 
-import com.unnathy.fieldwise.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +14,7 @@ import org.hibernate.annotations.Immutable;
 @Entity
 @Immutable
 @Table(name = "vw_order_items")
-public class ViewOrderItem  extends BaseEntity {
+public class ViewOrderItem {
 
     @Id
     @Column(name = "id")
