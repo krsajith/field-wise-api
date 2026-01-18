@@ -60,6 +60,13 @@ public class OrderItemService implements BasicEntityService<OrderItemDTO, Long> 
                 .collect(Collectors.toList());
     }
 
+
+    public List<OrderItemDTO> getOrderItemView(String authorization, User principal) throws UnnathyError {
+        return repository.findAll().stream()
+                .map(entity -> modelMapperService.map(entity, OrderItemDTO.class))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public OrderItemDTO getWithId(String authorization, User principal, Long id) throws UnnathyError {
         return repository.findById(id)
