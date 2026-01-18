@@ -2,6 +2,8 @@ package com.unnathy.fieldwise.core;
 
 import java.math.BigDecimal;
 
+
+
 public final class LocationContext {
 
     private static final ThreadLocal<BigDecimal> LATITUDE = new ThreadLocal<>();

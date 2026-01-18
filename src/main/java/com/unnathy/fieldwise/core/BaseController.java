@@ -1,10 +1,16 @@
 package com.unnathy.fieldwise.core;
 
 import com.unnathy.fieldwise.dto.BaseDTO;
-import com.unnathy.fieldwise.entity.User;
+import com.unnathy.fieldwise.user.User;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import java.io.Serializable;
+import java.util.List;
+import java.io.Serializable;
+import java.util.List;
+
+
 
 import java.io.Serializable;
 import java.util.List;

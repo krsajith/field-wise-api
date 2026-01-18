@@ -1,14 +1,16 @@
 package com.unnathy.fieldwise.security;
 
 import com.unnathy.fieldwise.core.UnnathyError;
-import com.unnathy.fieldwise.entity.User;
-import com.unnathy.fieldwise.repo.UserRepository;
+import com.unnathy.fieldwise.user.User;
+import com.unnathy.fieldwise.user.UserRepository;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.time.Instant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+
 
 @Service
 @RequiredArgsConstructor

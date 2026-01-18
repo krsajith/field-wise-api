@@ -5,6 +5,8 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import java.math.BigDecimal;
 
+
+
 public class EntityLocationListener {
 
     @PrePersist

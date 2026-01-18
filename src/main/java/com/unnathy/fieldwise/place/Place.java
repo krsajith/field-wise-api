@@ -1,0 +1,32 @@
+package com.unnathy.fieldwise.place;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import com.unnathy.fieldwise.entity.BaseEntity;
+
+
+
+@Getter
+@Setter
+@Entity
+@Table(name = "places")
+public class Place extends BaseEntity {
+
+    @Column(name = "district_id", nullable = false)
+    private Long districtId;
+
+    @Column(name = "name", nullable = false, length = 100)
+    private String name;
+
+    @Column(name = "pincode", length = 10)
+    private String pincode;
+
+    @ColumnDefault("true")
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+}

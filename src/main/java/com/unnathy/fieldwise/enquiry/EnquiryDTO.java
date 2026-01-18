@@ -1,0 +1,35 @@
+package com.unnathy.fieldwise.enquiry;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import com.unnathy.fieldwise.dto.BaseDTO;
+
+
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class EnquiryDTO extends BaseDTO {
+
+    private Long userId;
+    private String customerName;
+    private String contactPerson;
+    private String phone;
+    private String email;
+    private String address;
+    private String productInterest;
+    private BigDecimal quantityEstimate;
+    private BigDecimal estimatedValue;
+    private LocalDate expectedClosureDate;
+    private String status;
+    private String priority;
+    private LocalDate nextFollowUpDate;
+    private String followUpNotes;
+    private String lostReason;
+    private Long convertedToShop;
+}

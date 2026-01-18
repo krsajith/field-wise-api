@@ -1,8 +1,14 @@
 package com.unnathy.fieldwise.core;
 
 import com.unnathy.fieldwise.dto.BaseDTO;
-import com.unnathy.fieldwise.entity.User;
+import com.unnathy.fieldwise.user.User;
 import org.springframework.web.bind.annotation.RequestBody;
+import java.io.Serializable;
+import java.util.List;
+import java.io.Serializable;
+import java.util.List;
+
+
 
 import java.io.Serializable;
 import java.util.List;
