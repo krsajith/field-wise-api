@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/changes/002-seed-data.yaml
   - include:
       file: db/changelog/changes/003-create-v-orders.yaml
+  - include:
+      file: db/changelog/changes/004-create-vw-orders.yaml

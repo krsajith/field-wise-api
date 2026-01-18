@@ -4,9 +4,11 @@ import com.unnathy.fieldwise.core.BasicEntityService;
 import com.unnathy.fieldwise.core.ModelMapperService;
 import com.unnathy.fieldwise.core.UnnathyError;
 import com.unnathy.fieldwise.dto.OrderDTO;
+import com.unnathy.fieldwise.dto.OrderViewDTO;
 import com.unnathy.fieldwise.entity.Order;
 import com.unnathy.fieldwise.entity.User;
 import com.unnathy.fieldwise.repo.OrderRepository;
+import com.unnathy.fieldwise.repo.OrderViewRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class OrderService implements BasicEntityService<OrderDTO, Long> {
 
     private final OrderRepository repository;
+    private final OrderViewRepository viewRepository;
     private final ModelMapperService modelMapperService;
 
     @Override
@@ -50,5 +53,17 @@ public class OrderService implements BasicEntityService<OrderDTO, Long> {
         return repository.findById(id)
                 .map(entity -> modelMapperService.map(entity, OrderDTO.class))
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Order not found", null));
+    }
+
+    public List<OrderViewDTO> getOrderView() {
+        return viewRepository.findAll().stream()
+                .map(entity -> modelMapperService.map(entity, OrderViewDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<OrderViewDTO> getOrderViewByUserId(Long userId) {
+        return viewRepository.findAllByUserId(userId).stream()
+                .map(entity -> modelMapperService.map(entity, OrderViewDTO.class))
+                .collect(Collectors.toList());
     }
 }
