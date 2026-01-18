@@ -41,6 +41,8 @@ fieldwise:
   jwt:
     secret: ${FIELDWISE_JWT_SECRET:change-me-please-change-me-please}
     expiration-ms: ${FIELDWISE_JWT_EXPIRATION_MS:86400000}
+  upload:
+    path: ${FIELDWISE_UPLOAD_PATH:/home/nokin/field-wise-photos}
 
 logging:
   file:

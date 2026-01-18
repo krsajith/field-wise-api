@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.UUID;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -28,7 +29,11 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/api/uploads")
 public class FileUploadController {
 
-    private static final Path UPLOAD_ROOT = Paths.get("uploads").toAbsolutePath().normalize();
+    private final Path uploadRoot;
+
+    public FileUploadController(@Value("${fieldwise.upload.path:uploads}") String uploadPath) {
+        this.uploadRoot = Paths.get(uploadPath).toAbsolutePath().normalize();
+    }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Map<String, String> upload(@RequestParam("file") MultipartFile file) {
@@ -40,9 +45,9 @@ public class FileUploadController {
         String storedName = UUID.randomUUID() + extension;
 
         try {
-            Files.createDirectories(UPLOAD_ROOT);
-            Path destination = UPLOAD_ROOT.resolve(storedName).normalize();
-            if (!destination.startsWith(UPLOAD_ROOT)) {
+            Files.createDirectories(uploadRoot);
+            Path destination = uploadRoot.resolve(storedName).normalize();
+            if (!destination.startsWith(uploadRoot)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file name");
             }
             file.transferTo(destination);
@@ -58,8 +63,8 @@ public class FileUploadController {
         if (fileName == null || fileName.isBlank() || fileName.contains("..") || fileName.contains("/") || fileName.contains("\\")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file name");
         }
-        Path filePath = UPLOAD_ROOT.resolve(fileName).normalize();
-        if (!filePath.startsWith(UPLOAD_ROOT)) {
+        Path filePath = uploadRoot.resolve(fileName).normalize();
+        if (!filePath.startsWith(uploadRoot)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file path");
         }
         if (!Files.exists(filePath) || !Files.isRegularFile(filePath)) {

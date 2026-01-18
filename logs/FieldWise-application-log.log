@@ -360,3 +360,60 @@ This generated password is for development use only. Your security configuration
 2026-01-18 04:26:03.374 [http-nio-0.0.0.0-8088-exec-2] WARN  o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/field-wise/swagger-ui/index.html' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
 2026-01-18 04:26:04.671 [http-nio-0.0.0.0-8088-exec-10] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 976 ms
 2026-01-18 05:28:51.820 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m54s14ms72µs600ns).
+2026-01-18 07:43:31.621 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-18 07:43:31.629 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-01-18 07:43:31.640 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-18 07:43:31.648 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-01-18 07:43:31.771 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-01-18 07:43:36.173 [main] INFO  c.u.fieldwise.FieldWiseApplication - Starting FieldWiseApplication using Java 24.0.1 with PID 87856 (D:\workspace\field-wise\FieldWise\target\classes started by Unnathy in D:\workspace\field-wise\FieldWise)
+2026-01-18 07:43:36.174 [main] INFO  c.u.fieldwise.FieldWiseApplication - No active profile set, falling back to 1 default profile: "default"
+2026-01-18 07:43:36.369 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.0.1.Final
+2026-01-18 07:43:37.031 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-18 07:43:37.098 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 63 ms. Found 46 JPA repository interfaces.
+2026-01-18 07:43:37.444 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-01-18 07:43:37.451 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-0.0.0.0-8088"]
+2026-01-18 07:43:37.452 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-01-18 07:43:37.452 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-01-18 07:43:37.482 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1283 ms
+2026-01-18 07:43:37.551 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-01-18 07:43:37.595 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.0.Final
+2026-01-18 07:43:37.898 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-18 07:43:37.924 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-01-18 07:43:38.769 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@73cfafd8
+2026-01-18 07:43:38.769 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-01-18 07:43:38.853 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-18 07:43:39.140 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://40.90.168.50:5432/garage?currentSchema=field-wise]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 16.2
+	Default catalog/schema: garage/field-wise
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-18 07:43:40.129 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-18 07:43:40.903 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-18 07:43:40.941 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-18 07:43:41.047 [main] INFO  o.s.b.web.servlet.RegistrationBean - Filter jwtAuthFilterRegistration was not registered (disabled)
+2026-01-18 07:43:41.047 [main] INFO  o.s.b.web.servlet.RegistrationBean - Filter locationFilterRegistration was not registered (disabled)
+2026-01-18 07:43:41.174 [main] INFO  c.u.fieldwise.core.OkHttpClientUtil - Configured OkHttpClient with trust-all certificates
+2026-01-18 07:43:41.480 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-18 07:43:41.515 [main] WARN  o.s.b.s.a.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: d0a8f5f2-9e18-4869-8cc1-59ac85edc223
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-01-18 07:43:41.519 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-01-18 07:43:41.883 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-0.0.0.0-8088"]
+2026-01-18 07:43:41.893 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8088 (http) with context path '/field-wise'
+2026-01-18 07:43:41.898 [main] INFO  c.u.fieldwise.FieldWiseApplication - Started FieldWiseApplication in 6.083 seconds (process running for 6.628)
+2026-01-18 07:43:41.899 [main] WARN  o.s.c.events.SpringDocAppInitializer - SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-18 07:43:41.899 [main] WARN  o.s.c.events.SpringDocAppInitializer - SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-01-18 07:43:44.059 [http-nio-0.0.0.0-8088-exec-2] INFO  o.a.c.c.C.[.[.[/field-wise] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-18 07:43:44.059 [http-nio-0.0.0.0-8088-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-01-18 07:43:44.060 [http-nio-0.0.0.0-8088-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-01-18 07:43:44.074 [http-nio-0.0.0.0-8088-exec-2] WARN  o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/field-wise/api/orders/view' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
