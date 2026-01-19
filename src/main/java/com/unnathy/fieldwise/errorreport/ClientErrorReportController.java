@@ -14,11 +14,10 @@ import java.time.Instant;
 @RequestMapping("/client-errors")
 public class ClientErrorReportController {
     private final ClientErrorReportRepository repo;
-    private final ObjectMapper objectMapper;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
-    public ClientErrorReportController(ClientErrorReportRepository repo, ObjectMapper objectMapper) {
+    public ClientErrorReportController(ClientErrorReportRepository repo) {
         this.repo = repo;
-        this.objectMapper = objectMapper;
     }
 
     @PostMapping
