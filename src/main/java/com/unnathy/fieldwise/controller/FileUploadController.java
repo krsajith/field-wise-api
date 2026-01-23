@@ -36,13 +36,24 @@ public class FileUploadController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Map<String, String> upload(@RequestParam("file") MultipartFile file) {
+    public Map<String, String> upload(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "fileName", required = false) String clientFileName) {
         if (file == null || file.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "File is required");
         }
-        String originalName = file.getOriginalFilename();
-        String extension = getExtension(originalName);
-        String storedName = UUID.randomUUID() + extension;
+
+        String storedName;
+
+        // Use client-provided filename if available and valid
+        if (clientFileName != null && !clientFileName.isBlank()) {
+            storedName = validateAndSanitizeFileName(clientFileName);
+        } else {
+            // Fallback to UUID-based filename
+            String originalName = file.getOriginalFilename();
+            String extension = getExtension(originalName);
+            storedName = UUID.randomUUID() + extension;
+        }
 
         try {
             Files.createDirectories(uploadRoot);
@@ -95,5 +106,42 @@ public class FileUploadController {
             return "";
         }
         return fileName.substring(lastDot);
+    }
+
+    private String validateAndSanitizeFileName(String fileName) {
+        if (fileName == null || fileName.isBlank()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file name");
+        }
+
+        // Remove any path traversal attempts
+        String sanitized = fileName.replaceAll("[/\\\\]", "");
+
+        // Check for path traversal patterns
+        if (sanitized.contains("..") || sanitized.contains("/") || sanitized.contains("\\")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file name");
+        }
+
+        // Ensure filename is not empty after sanitization
+        if (sanitized.isBlank()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file name");
+        }
+
+        // Optional: Validate UUID format (if you want strict validation)
+        // The filename should be in format: <uuid>.<extension>
+        String nameWithoutExt = sanitized;
+        int lastDot = sanitized.lastIndexOf('.');
+        if (lastDot > 0) {
+            nameWithoutExt = sanitized.substring(0, lastDot);
+        }
+
+        // Check if it's a valid UUID format (optional but recommended)
+        try {
+            UUID.fromString(nameWithoutExt);
+        } catch (IllegalArgumentException e) {
+            // Not a valid UUID, but we'll allow it
+            // You can make this stricter by throwing an exception here
+        }
+
+        return sanitized;
     }
 }
