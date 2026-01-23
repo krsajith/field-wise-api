@@ -1,6 +1,5 @@
 package com.unnathy.fieldwise.errorreport;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,14 +13,14 @@ import java.time.Instant;
 @RequestMapping("/client-errors")
 public class ClientErrorReportController {
     private final ClientErrorReportRepository repo;
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public ClientErrorReportController(ClientErrorReportRepository repo) {
         this.repo = repo;
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody ClientErrorReportRequest req) throws JsonProcessingException {
+    public ResponseEntity<Void> create(@RequestBody ClientErrorReportRequest req) {
         ClientErrorReport entity = new ClientErrorReport();
         entity.setMessage(req.message);
         entity.setName(req.name);
@@ -35,7 +34,7 @@ public class ClientErrorReportController {
             entity.setEmail(req.user.email);
         }
         if (req.context != null) {
-            entity.setContext(objectMapper.writeValueAsString(req.context));
+            entity.setContext(objectMapper.valueToTree(req.context));
         }
         // Optional: if you want to keep client timestamp
         if (req.timestamp != null) {

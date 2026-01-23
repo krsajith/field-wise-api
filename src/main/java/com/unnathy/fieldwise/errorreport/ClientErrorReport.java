@@ -1,8 +1,11 @@
 package com.unnathy.fieldwise.errorreport;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
 
@@ -41,7 +44,8 @@ public class ClientErrorReport {
     private String username;
     private String email;
 
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
-    private String context; // store JSON as string
+    private JsonNode context;
     // getters/setters...
 }
