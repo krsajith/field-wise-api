@@ -3,14 +3,9 @@ package com.unnathy.fieldwise.core;
 import com.unnathy.fieldwise.dto.BaseDTO;
 import com.unnathy.fieldwise.user.User;
 import io.swagger.v3.oas.annotations.Parameter;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import java.io.Serializable;
-import java.util.List;
-import java.io.Serializable;
-import java.util.List;
-
-
 
 import java.io.Serializable;
 import java.util.List;
@@ -36,6 +31,14 @@ public interface BaseController<T extends BaseDTO,I extends Serializable> extend
     @GetMapping()
     default List<T> get(@Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
         return getService().get(authorization, principal);
+    }
+
+    @GetMapping("/page")
+    default Page<? extends T> getPaged(@Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
+                             @Parameter(hidden = true) @AuthenticationPrincipal User principal,
+                             @RequestParam(name = "page", defaultValue = "0") int page,
+                             @RequestParam(name = "size", defaultValue = "20") int size) throws UnnathyError {
+        return getService().getPaged(authorization, principal, page, size);
     }
 
     @GetMapping("/{id}")
