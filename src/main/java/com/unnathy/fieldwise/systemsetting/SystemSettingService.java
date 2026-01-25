@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SystemSettingService implements BasicEntityService<SystemSettingDTO, Long> {
+public class SystemSettingService implements BasicEntityService<SystemSettingDTO, SystemSettingDTO, Long> {
 
     private final SystemSettingRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class SystemSettingService implements BasicEntityService<SystemSettingDTO
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "SystemSetting not found", null));
     }
 }
+
+

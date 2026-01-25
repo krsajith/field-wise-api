@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class EnquiryService implements BasicEntityService<EnquiryDTO, Long> {
+public class EnquiryService implements BasicEntityService<EnquiryDTO, EnquiryDTO, Long> {
 
     private final EnquiryRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class EnquiryService implements BasicEntityService<EnquiryDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Enquiry not found", null));
     }
 }
+
+

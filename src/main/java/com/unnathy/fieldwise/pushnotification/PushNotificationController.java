@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/pushNotifications")
 @RequiredArgsConstructor
-public class PushNotificationController implements BaseController<PushNotificationDTO, Long> {
+public class PushNotificationController implements BaseController<PushNotificationDTO, PushNotificationDTO, Long> {
 
     private final PushNotificationService service;
 
     @Override
-    public BasicEntityService<PushNotificationDTO, Long> getService() {
+    public BasicEntityService<PushNotificationDTO, PushNotificationDTO, Long> getService() {
         return service;
     }
 }
+
+
+

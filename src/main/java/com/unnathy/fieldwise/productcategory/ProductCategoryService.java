@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ProductCategoryService implements BasicEntityService<ProductCategoryDTO, Long> {
+public class ProductCategoryService implements BasicEntityService<ProductCategoryDTO, ProductCategoryDTO, Long> {
 
     private final ProductCategoryRepository repository;
     private final ModelMapperService modelMapperService;
@@ -52,3 +52,5 @@ public class ProductCategoryService implements BasicEntityService<ProductCategor
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "ProductCategory not found", null));
     }
 }
+
+

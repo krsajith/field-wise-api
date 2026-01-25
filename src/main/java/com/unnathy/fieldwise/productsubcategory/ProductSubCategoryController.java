@@ -36,12 +36,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/productSubCategorys")
 @RequiredArgsConstructor
-public class ProductSubCategoryController implements BaseController<ProductSubCategoryDTO, Long> {
+public class ProductSubCategoryController implements BaseController<ProductSubCategoryDTO, ProductSubCategoryDTO, Long> {
 
     private final ProductSubCategoryService service;
 
     @Override
-    public BasicEntityService<ProductSubCategoryDTO, Long> getService() {
+    public BasicEntityService<ProductSubCategoryDTO, ProductSubCategoryDTO, Long> getService() {
         return service;
     }
 
@@ -53,3 +53,6 @@ public class ProductSubCategoryController implements BaseController<ProductSubCa
         return service.getByCategory(authorization, principal, categoryId);
     }
 }
+
+
+

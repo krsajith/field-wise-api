@@ -20,12 +20,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
-public class ProductController implements BaseController<ProductDTO, Long> {
+public class ProductController implements BaseController<ProductDTO, ProductDTO, Long> {
 
     private final ProductService service;
 
     @Override
-    public BasicEntityService<ProductDTO, Long> getService() {
+    public BasicEntityService<ProductDTO, ProductDTO, Long> getService() {
         return service;
     }
 
@@ -39,3 +39,6 @@ public class ProductController implements BaseController<ProductDTO, Long> {
         return service.getWithCategoryAndSubCategory(categoryId,subCategoryId);
     }
 }
+
+
+

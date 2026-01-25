@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/activitys")
 @RequiredArgsConstructor
-public class ActivityController implements BaseController<ActivityDTO, Long> {
+public class ActivityController implements BaseController<ActivityDTO, ActivityDTO, Long> {
 
     private final ActivityService service;
 
     @Override
-    public BasicEntityService<ActivityDTO, Long> getService() {
+    public BasicEntityService<ActivityDTO, ActivityDTO, Long> getService() {
         return service;
     }
 }
+
+
+

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class OrderItemService implements BasicEntityService<OrderItemDTO, Long> {
+public class OrderItemService implements BasicEntityService<OrderItemDTO, OrderItemDTO, Long> {
 
     private final OrderItemRepository repository;
     private final ModelMapperService modelMapperService;
@@ -126,3 +126,5 @@ public class OrderItemService implements BasicEntityService<OrderItemDTO, Long> 
         }
     }
 }
+
+

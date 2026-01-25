@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuditLogService implements BasicEntityService<AuditLogDTO, Long> {
+public class AuditLogService implements BasicEntityService<AuditLogDTO, AuditLogDTO, Long> {
 
     private final AuditLogRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class AuditLogService implements BasicEntityService<AuditLogDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "AuditLog not found", null));
     }
 }
+
+

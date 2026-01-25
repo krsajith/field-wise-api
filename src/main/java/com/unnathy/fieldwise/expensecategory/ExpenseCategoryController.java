@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/expenseCategorys")
 @RequiredArgsConstructor
-public class ExpenseCategoryController implements BaseController<ExpenseCategoryDTO, Long> {
+public class ExpenseCategoryController implements BaseController<ExpenseCategoryDTO, ExpenseCategoryDTO, Long> {
 
     private final ExpenseCategoryService service;
 
     @Override
-    public BasicEntityService<ExpenseCategoryDTO, Long> getService() {
+    public BasicEntityService<ExpenseCategoryDTO, ExpenseCategoryDTO, Long> getService() {
         return service;
     }
 }
+
+
+

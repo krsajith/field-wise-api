@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class RolePermissionService implements BasicEntityService<RolePermissionDTO, Long> {
+public class RolePermissionService implements BasicEntityService<RolePermissionDTO, RolePermissionDTO, Long> {
 
     private final RolePermissionRepository repository;
     private final ModelMapperService modelMapperService;
@@ -52,3 +52,5 @@ public class RolePermissionService implements BasicEntityService<RolePermissionD
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "RolePermission not found", null));
     }
 }
+
+

@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/roles")
 @RequiredArgsConstructor
-public class RoleController implements BaseController<RoleDTO, Long> {
+public class RoleController implements BaseController<RoleDTO, RoleDTO, Long> {
 
     private final RoleService service;
 
     @Override
-    public BasicEntityService<RoleDTO, Long> getService() {
+    public BasicEntityService<RoleDTO, RoleDTO, Long> getService() {
         return service;
     }
 }
+
+
+

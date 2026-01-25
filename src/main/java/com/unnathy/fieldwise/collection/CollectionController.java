@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/collections")
 @RequiredArgsConstructor
-public class CollectionController implements BaseController<CollectionDTO, Long> {
+public class CollectionController implements BaseController<CollectionDTO, CollectionDTO, Long> {
 
     private final CollectionService service;
 
     @Override
-    public BasicEntityService<CollectionDTO, Long> getService() {
+    public BasicEntityService<CollectionDTO, CollectionDTO, Long> getService() {
         return service;
     }
 }
+
+
+

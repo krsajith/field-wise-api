@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/states")
 @RequiredArgsConstructor
-public class StateController implements BaseController<StateDTO, Long> {
+public class StateController implements BaseController<StateDTO, StateDTO, Long> {
 
     private final StateService service;
 
     @Override
-    public BasicEntityService<StateDTO, Long> getService() {
+    public BasicEntityService<StateDTO, StateDTO, Long> getService() {
         return service;
     }
 }
+
+
+

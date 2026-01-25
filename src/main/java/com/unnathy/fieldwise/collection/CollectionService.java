@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CollectionService implements BasicEntityService<CollectionDTO, Long> {
+public class CollectionService implements BasicEntityService<CollectionDTO, CollectionDTO, Long> {
 
     private final CollectionRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class CollectionService implements BasicEntityService<CollectionDTO, Long
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Collection not found", null));
     }
 }
+
+

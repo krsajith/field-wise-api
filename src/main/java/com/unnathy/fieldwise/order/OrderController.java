@@ -17,12 +17,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/orders")
 @RequiredArgsConstructor
-public class OrderController implements BaseController<OrderDTO, Long> {
+public class OrderController implements BaseController<OrderDTO, OrderDTO, Long> {
 
     private final OrderService service;
 
     @Override
-    public BasicEntityService<OrderDTO, Long> getService() {
+    public BasicEntityService<OrderDTO, OrderDTO, Long> getService() {
         return service;
     }
 
@@ -57,3 +57,6 @@ public class OrderController implements BaseController<OrderDTO, Long> {
         return service.getOrdersByStatus(status);
     }
 }
+
+
+

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class OtpVerificationService implements BasicEntityService<OtpVerificationDTO, Long> {
+public class OtpVerificationService implements BasicEntityService<OtpVerificationDTO, OtpVerificationDTO, Long> {
 
     private final OtpVerificationRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class OtpVerificationService implements BasicEntityService<OtpVerificatio
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "OtpVerification not found", null));
     }
 }
+
+

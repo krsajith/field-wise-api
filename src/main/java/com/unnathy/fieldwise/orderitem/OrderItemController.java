@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/orderItems")
 @RequiredArgsConstructor
-public class OrderItemController implements BaseController<OrderItemDTO, Long> {
+public class OrderItemController implements BaseController<OrderItemDTO, OrderItemDTO, Long> {
 
     private final OrderItemService service;
 
     @Override
-    public BasicEntityService<OrderItemDTO, Long> getService() {
+    public BasicEntityService<OrderItemDTO, OrderItemDTO, Long> getService() {
         return service;
     }
 
@@ -45,3 +45,6 @@ public class OrderItemController implements BaseController<OrderItemDTO, Long> {
         return service.getOrderItemViewByOrderId(orderId);
     }
 }
+
+
+

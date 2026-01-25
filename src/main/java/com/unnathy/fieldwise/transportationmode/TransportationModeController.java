@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/transportationModes")
 @RequiredArgsConstructor
-public class TransportationModeController implements BaseController<TransportationModeDTO, Long> {
+public class TransportationModeController implements BaseController<TransportationModeDTO, TransportationModeDTO, Long> {
 
     private final TransportationModeService service;
 
     @Override
-    public BasicEntityService<TransportationModeDTO, Long> getService() {
+    public BasicEntityService<TransportationModeDTO, TransportationModeDTO, Long> getService() {
         return service;
     }
 }
+
+
+

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements BasicEntityService<UserDTO, Long> {
+public class UserService implements BasicEntityService<UserDTO, UserDTO, Long> {
 
     private final UserRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class UserService implements BasicEntityService<UserDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "User not found", null));
     }
 }
+
+

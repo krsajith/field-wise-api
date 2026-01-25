@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class TransportationModeService implements BasicEntityService<TransportationModeDTO, Long> {
+public class TransportationModeService implements BasicEntityService<TransportationModeDTO, TransportationModeDTO, Long> {
 
     private final TransportationModeRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class TransportationModeService implements BasicEntityService<Transportat
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "TransportationMode not found", null));
     }
 }
+
+

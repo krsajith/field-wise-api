@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/locationLogs")
 @RequiredArgsConstructor
-public class LocationLogController implements BaseController<LocationLogDTO, Long> {
+public class LocationLogController implements BaseController<LocationLogDTO, LocationLogDTO, Long> {
 
     private final LocationLogService service;
 
     @Override
-    public BasicEntityService<LocationLogDTO, Long> getService() {
+    public BasicEntityService<LocationLogDTO, LocationLogDTO, Long> getService() {
         return service;
     }
 }
+
+
+

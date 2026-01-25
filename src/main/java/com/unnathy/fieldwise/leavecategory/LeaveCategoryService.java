@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LeaveCategoryService implements BasicEntityService<LeaveCategoryDTO, Long> {
+public class LeaveCategoryService implements BasicEntityService<LeaveCategoryDTO, LeaveCategoryDTO, Long> {
 
     private final LeaveCategoryRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class LeaveCategoryService implements BasicEntityService<LeaveCategoryDTO
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "LeaveCategory not found", null));
     }
 }
+
+

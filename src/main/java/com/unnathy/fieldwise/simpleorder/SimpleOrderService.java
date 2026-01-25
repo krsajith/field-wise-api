@@ -29,7 +29,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SimpleOrderService implements BasicEntityService<SimpleOrderDTO, Long> {
+public class SimpleOrderService implements BasicEntityService<SimpleOrderDTO, SimpleOrderDTO, Long> {
 
     private final SimpleOrderRepository repository;
     private final ModelMapperService modelMapperService;
@@ -69,3 +69,5 @@ public class SimpleOrderService implements BasicEntityService<SimpleOrderDTO, Lo
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "SimpleOrder not found", null));
     }
 }
+
+

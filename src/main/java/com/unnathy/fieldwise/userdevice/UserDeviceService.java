@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserDeviceService implements BasicEntityService<UserDeviceDTO, Long> {
+public class UserDeviceService implements BasicEntityService<UserDeviceDTO, UserDeviceDTO, Long> {
 
     private final UserDeviceRepository repository;
     private final ModelMapperService modelMapperService;
@@ -52,3 +52,5 @@ public class UserDeviceService implements BasicEntityService<UserDeviceDTO, Long
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "UserDevice not found", null));
     }
 }
+
+

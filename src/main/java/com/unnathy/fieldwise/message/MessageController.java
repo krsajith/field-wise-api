@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/messages")
 @RequiredArgsConstructor
-public class MessageController implements BaseController<MessageDTO, Long> {
+public class MessageController implements BaseController<MessageDTO, MessageDTO, Long> {
 
     private final MessageService service;
 
     @Override
-    public BasicEntityService<MessageDTO, Long> getService() {
+    public BasicEntityService<MessageDTO, MessageDTO, Long> getService() {
         return service;
     }
 }
+
+
+

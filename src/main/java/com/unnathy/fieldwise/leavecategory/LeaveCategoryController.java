@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/leaveCategorys")
 @RequiredArgsConstructor
-public class LeaveCategoryController implements BaseController<LeaveCategoryDTO, Long> {
+public class LeaveCategoryController implements BaseController<LeaveCategoryDTO, LeaveCategoryDTO, Long> {
 
     private final LeaveCategoryService service;
 
     @Override
-    public BasicEntityService<LeaveCategoryDTO, Long> getService() {
+    public BasicEntityService<LeaveCategoryDTO, LeaveCategoryDTO, Long> getService() {
         return service;
     }
 }
+
+
+

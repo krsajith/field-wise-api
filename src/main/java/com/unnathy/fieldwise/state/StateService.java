@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class StateService implements BasicEntityService<StateDTO, Long> {
+public class StateService implements BasicEntityService<StateDTO, StateDTO, Long> {
 
     private final StateRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class StateService implements BasicEntityService<StateDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "State not found", null));
     }
 }
+
+

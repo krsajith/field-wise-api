@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/routes")
 @RequiredArgsConstructor
-public class RouteController implements BaseController<RouteDTO, Long> {
+public class RouteController implements BaseController<RouteDTO, RouteDTO, Long> {
 
     private final RouteService service;
 
     @Override
-    public BasicEntityService<RouteDTO, Long> getService() {
+    public BasicEntityService<RouteDTO, RouteDTO, Long> getService() {
         return service;
     }
 }
+
+
+

@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/feedbacks")
 @RequiredArgsConstructor
-public class FeedbackController implements BaseController<FeedbackDTO, Long> {
+public class FeedbackController implements BaseController<FeedbackDTO, FeedbackDTO, Long> {
 
     private final FeedbackService service;
 
     @Override
-    public BasicEntityService<FeedbackDTO, Long> getService() {
+    public BasicEntityService<FeedbackDTO, FeedbackDTO, Long> getService() {
         return service;
     }
 }
+
+
+

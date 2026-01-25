@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class RouteService implements BasicEntityService<RouteDTO, Long> {
+public class RouteService implements BasicEntityService<RouteDTO, RouteDTO, Long> {
 
     private final RouteRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class RouteService implements BasicEntityService<RouteDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Route not found", null));
     }
 }
+
+

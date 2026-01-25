@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ProductStockService implements BasicEntityService<ProductStockDTO, Long> {
+public class ProductStockService implements BasicEntityService<ProductStockDTO, ProductStockDTO, Long> {
 
     private final ProductStockRepository repository;
     private final ModelMapperService modelMapperService;
@@ -52,3 +52,5 @@ public class ProductStockService implements BasicEntityService<ProductStockDTO, 
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "ProductStock not found", null));
     }
 }
+
+

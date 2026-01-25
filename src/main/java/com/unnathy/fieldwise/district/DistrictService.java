@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class DistrictService implements BasicEntityService<DistrictDTO, Long> {
+public class DistrictService implements BasicEntityService<DistrictDTO, DistrictDTO, Long> {
 
     private final DistrictRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class DistrictService implements BasicEntityService<DistrictDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "District not found", null));
     }
 }
+
+

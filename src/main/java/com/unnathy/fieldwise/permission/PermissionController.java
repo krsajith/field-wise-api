@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/permissions")
 @RequiredArgsConstructor
-public class PermissionController implements BaseController<PermissionDTO, Long> {
+public class PermissionController implements BaseController<PermissionDTO, PermissionDTO, Long> {
 
     private final PermissionService service;
 
     @Override
-    public BasicEntityService<PermissionDTO, Long> getService() {
+    public BasicEntityService<PermissionDTO, PermissionDTO, Long> getService() {
         return service;
     }
 }
+
+
+

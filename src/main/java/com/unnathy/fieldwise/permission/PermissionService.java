@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PermissionService implements BasicEntityService<PermissionDTO, Long> {
+public class PermissionService implements BasicEntityService<PermissionDTO, PermissionDTO, Long> {
 
     private final PermissionRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class PermissionService implements BasicEntityService<PermissionDTO, Long
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Permission not found", null));
     }
 }
+
+

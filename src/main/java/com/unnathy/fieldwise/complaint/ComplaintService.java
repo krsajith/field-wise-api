@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ComplaintService implements BasicEntityService<ComplaintDTO, Long> {
+public class ComplaintService implements BasicEntityService<ComplaintDTO, ComplaintDTO, Long> {
 
     private final ComplaintRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class ComplaintService implements BasicEntityService<ComplaintDTO, Long> 
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Complaint not found", null));
     }
 }
+
+

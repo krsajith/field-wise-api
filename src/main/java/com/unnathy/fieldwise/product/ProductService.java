@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService implements BasicEntityService<ProductDTO, Long> {
+public class ProductService implements BasicEntityService<ProductDTO, ProductDTO, Long> {
 
     private final ProductRepository repository;
     private final ModelMapperService modelMapperService;
@@ -60,3 +60,5 @@ public class ProductService implements BasicEntityService<ProductDTO, Long> {
                 .collect(Collectors.toList());
     }
 }
+
+

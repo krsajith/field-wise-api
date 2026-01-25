@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ProductSubCategoryService implements BasicEntityService<ProductSubCategoryDTO, Long> {
+public class ProductSubCategoryService implements BasicEntityService<ProductSubCategoryDTO, ProductSubCategoryDTO, Long> {
 
     private final ProductSubCategoryRepository repository;
     private final ModelMapperService modelMapperService;
@@ -59,3 +59,5 @@ public class ProductSubCategoryService implements BasicEntityService<ProductSubC
                 .collect(Collectors.toList());
     }
 }
+
+

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class RoleService implements BasicEntityService<RoleDTO, Long> {
+public class RoleService implements BasicEntityService<RoleDTO, RoleDTO, Long> {
 
     private final RoleRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class RoleService implements BasicEntityService<RoleDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Role not found", null));
     }
 }
+
+

@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/productCategorys")
 @RequiredArgsConstructor
-public class ProductCategoryController implements BaseController<ProductCategoryDTO, Long> {
+public class ProductCategoryController implements BaseController<ProductCategoryDTO, ProductCategoryDTO, Long> {
 
     private final ProductCategoryService service;
 
     @Override
-    public BasicEntityService<ProductCategoryDTO, Long> getService() {
+    public BasicEntityService<ProductCategoryDTO, ProductCategoryDTO, Long> getService() {
         return service;
     }
 }
+
+
+

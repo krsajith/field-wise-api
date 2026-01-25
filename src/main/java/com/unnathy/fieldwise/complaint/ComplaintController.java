@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/complaints")
 @RequiredArgsConstructor
-public class ComplaintController implements BaseController<ComplaintDTO, Long> {
+public class ComplaintController implements BaseController<ComplaintDTO, ComplaintDTO, Long> {
 
     private final ComplaintService service;
 
     @Override
-    public BasicEntityService<ComplaintDTO, Long> getService() {
+    public BasicEntityService<ComplaintDTO, ComplaintDTO, Long> getService() {
         return service;
     }
 }
+
+
+

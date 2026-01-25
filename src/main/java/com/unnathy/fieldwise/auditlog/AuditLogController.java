@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auditLogs")
 @RequiredArgsConstructor
-public class AuditLogController implements BaseController<AuditLogDTO, Long> {
+public class AuditLogController implements BaseController<AuditLogDTO, AuditLogDTO, Long> {
 
     private final AuditLogService service;
 
     @Override
-    public BasicEntityService<AuditLogDTO, Long> getService() {
+    public BasicEntityService<AuditLogDTO, AuditLogDTO, Long> getService() {
         return service;
     }
 }
+
+
+

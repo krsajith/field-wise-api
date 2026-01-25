@@ -1,8 +1,8 @@
 package com.unnathy.fieldwise.expense;
 
-import org.springframework.data.repository.ListPagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VwExpenseRepository extends ListPagingAndSortingRepository<VwExpense, Long> {
+public interface VwExpenseRepository extends JpaRepository<VwExpense, Long> {
 }

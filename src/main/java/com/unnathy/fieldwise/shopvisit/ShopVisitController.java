@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/shopVisits")
 @RequiredArgsConstructor
-public class ShopVisitController implements BaseController<ShopVisitDTO, Long> {
+public class ShopVisitController implements BaseController<ShopVisitDTO, ShopVisitDTO, Long> {
 
     private final ShopVisitService service;
 
     @Override
-    public BasicEntityService<ShopVisitDTO, Long> getService() {
+    public BasicEntityService<ShopVisitDTO, ShopVisitDTO, Long> getService() {
         return service;
     }
 
@@ -47,3 +47,6 @@ public class ShopVisitController implements BaseController<ShopVisitDTO, Long> {
         return service.checkout(id);
     }
 }
+
+
+

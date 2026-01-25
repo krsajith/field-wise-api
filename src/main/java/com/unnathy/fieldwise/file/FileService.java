@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class FileService implements BasicEntityService<FileDTO, Long> {
+public class FileService implements BasicEntityService<FileDTO, FileDTO, Long> {
 
     private final FileRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class FileService implements BasicEntityService<FileDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "File not found", null));
     }
 }
+
+

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LeaveApplicationService implements BasicEntityService<LeaveApplicationDTO, Long> {
+public class LeaveApplicationService implements BasicEntityService<LeaveApplicationDTO, LeaveApplicationDTO, Long> {
 
     private final LeaveApplicationRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class LeaveApplicationService implements BasicEntityService<LeaveApplicat
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "LeaveApplication not found", null));
     }
 }
+
+

@@ -11,42 +11,43 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public interface BaseController<T extends BaseDTO,I extends Serializable> extends SecuredRestController {
+public interface BaseController<WriteDTO extends BaseDTO, ReadDTO extends BaseDTO, I extends Serializable> extends SecuredRestController {
 
     @PostMapping()
-    default T post(@RequestBody T data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
+    default ReadDTO post(@RequestBody WriteDTO data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
         return getService().post(data, authorization, principal);
     }
 
     @PatchMapping()
-    public default T patch(@RequestBody T data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
+    default ReadDTO patch(@RequestBody WriteDTO data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
         return getService().patch(data,authorization,principal);
     }
 
     @PutMapping()
-    default T put(@RequestBody T data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
+    default ReadDTO put(@RequestBody WriteDTO data, @Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
         return getService().put(data,authorization,principal);
     }
 
     @GetMapping()
-    default List<T> get(@Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
+    default List<ReadDTO> get(@Parameter(hidden = true) @RequestHeader("Authorization") String authorization, @Parameter(hidden = true) @AuthenticationPrincipal User principal) throws UnnathyError {
         return getService().get(authorization, principal);
     }
 
     @GetMapping("/page")
-    default Page<? extends T> getPaged(@Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
-                             @Parameter(hidden = true) @AuthenticationPrincipal User principal,
-                             @RequestParam(name = "page", defaultValue = "0") int page,
-                             @RequestParam(name = "size", defaultValue = "20") int size) throws UnnathyError {
+    default Page<ReadDTO> getPaged(@Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
+                                   @Parameter(hidden = true) @AuthenticationPrincipal User principal,
+                                   @RequestParam(name = "page", defaultValue = "0") int page,
+                                   @RequestParam(name = "size", defaultValue = "20") int size) throws UnnathyError {
         return getService().getPaged(authorization, principal, page, size);
     }
 
     @GetMapping("/{id}")
-    default T getWithId(@Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
+    default ReadDTO getWithId(@Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
                         @Parameter(hidden = true) @AuthenticationPrincipal User principal,
                         @PathVariable("id") I id) throws UnnathyError {
         return getService().getWithId(authorization, principal, id);
     }
 
-    BasicEntityService<T,I> getService();
+    BasicEntityService<WriteDTO, ReadDTO, I> getService();
 }
+

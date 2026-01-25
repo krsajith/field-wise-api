@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ShopVisitService implements BasicEntityService<ShopVisitDTO, Long> {
+public class ShopVisitService implements BasicEntityService<ShopVisitDTO, ShopVisitDTO, Long> {
 
     private final ShopVisitRepository repository;
     private final ShopVisitViewRepository viewRepository;
@@ -77,3 +77,5 @@ public class ShopVisitService implements BasicEntityService<ShopVisitDTO, Long> 
         return modelMapperService.map(saved, ShopVisitDTO.class);
     }
 }
+
+

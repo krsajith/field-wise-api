@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LocationLogService implements BasicEntityService<LocationLogDTO, Long> {
+public class LocationLogService implements BasicEntityService<LocationLogDTO, LocationLogDTO, Long> {
 
     private final LocationLogRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class LocationLogService implements BasicEntityService<LocationLogDTO, Lo
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "LocationLog not found", null));
     }
 }
+
+

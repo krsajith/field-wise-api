@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PlaceService implements BasicEntityService<PlaceDTO, Long> {
+public class PlaceService implements BasicEntityService<PlaceDTO, PlaceDTO, Long> {
 
     private final PlaceRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class PlaceService implements BasicEntityService<PlaceDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Place not found", null));
     }
 }
+
+

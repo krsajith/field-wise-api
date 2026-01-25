@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/paymentTerms")
 @RequiredArgsConstructor
-public class PaymentTermController implements BaseController<PaymentTermDTO, Long> {
+public class PaymentTermController implements BaseController<PaymentTermDTO, PaymentTermDTO, Long> {
 
     private final PaymentTermService service;
 
     @Override
-    public BasicEntityService<PaymentTermDTO, Long> getService() {
+    public BasicEntityService<PaymentTermDTO, PaymentTermDTO, Long> getService() {
         return service;
     }
 }
+
+
+

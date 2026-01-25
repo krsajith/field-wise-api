@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class FeedbackService implements BasicEntityService<FeedbackDTO, Long> {
+public class FeedbackService implements BasicEntityService<FeedbackDTO, FeedbackDTO, Long> {
 
     private final FeedbackRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class FeedbackService implements BasicEntityService<FeedbackDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Feedback not found", null));
     }
 }
+
+

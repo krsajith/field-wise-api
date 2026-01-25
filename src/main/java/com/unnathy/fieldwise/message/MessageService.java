@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class MessageService implements BasicEntityService<MessageDTO, Long> {
+public class MessageService implements BasicEntityService<MessageDTO, MessageDTO, Long> {
 
     private final MessageRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class MessageService implements BasicEntityService<MessageDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Message not found", null));
     }
 }
+
+

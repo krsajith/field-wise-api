@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/files")
 @RequiredArgsConstructor
-public class FileController implements BaseController<FileDTO, Long> {
+public class FileController implements BaseController<FileDTO, FileDTO, Long> {
 
     private final FileService service;
 
     @Override
-    public BasicEntityService<FileDTO, Long> getService() {
+    public BasicEntityService<FileDTO, FileDTO, Long> getService() {
         return service;
     }
 }
+
+
+

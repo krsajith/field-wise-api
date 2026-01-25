@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.io.Serializable;
 import java.util.List;
 
-public interface BasicEntityService<T extends BaseDTO, I extends Serializable> {
+public interface BasicEntityService<WriteDTO extends BaseDTO, ReadDTO extends BaseDTO, I extends Serializable> {
 
-    T post(T data, String authorization, User principal) throws UnnathyError;
+    ReadDTO post(WriteDTO data, String authorization, User principal) throws UnnathyError;
 
-    T patch(T data, String authorization, User principal) throws UnnathyError;
+    ReadDTO patch(WriteDTO data, String authorization, User principal) throws UnnathyError;
 
-    T put(@RequestBody T data, String authorization, User principal) throws UnnathyError;
+    ReadDTO put(@RequestBody WriteDTO data, String authorization, User principal) throws UnnathyError;
 
-    List<T> get(String authorization, User principal)  throws UnnathyError;
+    List<ReadDTO> get(String authorization, User principal)  throws UnnathyError;
 
-    T getWithId(String authorization, User principal, I id) throws UnnathyError;
+    ReadDTO getWithId(String authorization, User principal, I id) throws UnnathyError;
 
-    default Page<? extends T> getPaged(String authorization, User principal, int page, int size) throws UnnathyError {
+    default Page<ReadDTO> getPaged(String authorization, User principal, int page, int size) throws UnnathyError {
         throw new UnnathyError("Paged endpoint not implemented",null,null);
     }
 }

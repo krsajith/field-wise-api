@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AttendanceService implements BasicEntityService<AttendanceDTO, Long> {
+public class AttendanceService implements BasicEntityService<AttendanceDTO, AttendanceDTO, Long> {
 
     private final AttendanceRepository repository;
     private final ModelMapperService modelMapperService;
@@ -141,3 +141,5 @@ public class AttendanceService implements BasicEntityService<AttendanceDTO, Long
         return fullName.isEmpty() ? null : fullName;
     }
 }
+
+

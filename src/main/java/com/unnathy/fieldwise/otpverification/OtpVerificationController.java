@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/otpVerifications")
 @RequiredArgsConstructor
-public class OtpVerificationController implements BaseController<OtpVerificationDTO, Long> {
+public class OtpVerificationController implements BaseController<OtpVerificationDTO, OtpVerificationDTO, Long> {
 
     private final OtpVerificationService service;
 
     @Override
-    public BasicEntityService<OtpVerificationDTO, Long> getService() {
+    public BasicEntityService<OtpVerificationDTO, OtpVerificationDTO, Long> getService() {
         return service;
     }
 }
+
+
+

@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/systemSettings")
 @RequiredArgsConstructor
-public class SystemSettingController implements BaseController<SystemSettingDTO, Long> {
+public class SystemSettingController implements BaseController<SystemSettingDTO, SystemSettingDTO, Long> {
 
     private final SystemSettingService service;
 
     @Override
-    public BasicEntityService<SystemSettingDTO, Long> getService() {
+    public BasicEntityService<SystemSettingDTO, SystemSettingDTO, Long> getService() {
         return service;
     }
 }
+
+
+

@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/productStocks")
 @RequiredArgsConstructor
-public class ProductStockController implements BaseController<ProductStockDTO, Long> {
+public class ProductStockController implements BaseController<ProductStockDTO, ProductStockDTO, Long> {
 
     private final ProductStockService service;
 
     @Override
-    public BasicEntityService<ProductStockDTO, Long> getService() {
+    public BasicEntityService<ProductStockDTO, ProductStockDTO, Long> getService() {
         return service;
     }
 }
+
+
+

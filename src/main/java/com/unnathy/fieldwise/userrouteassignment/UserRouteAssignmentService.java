@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserRouteAssignmentService implements BasicEntityService<UserRouteAssignmentDTO, Long> {
+public class UserRouteAssignmentService implements BasicEntityService<UserRouteAssignmentDTO, UserRouteAssignmentDTO, Long> {
 
     private final UserRouteAssignmentRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class UserRouteAssignmentService implements BasicEntityService<UserRouteA
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "UserRouteAssignment not found", null));
     }
 }
+
+

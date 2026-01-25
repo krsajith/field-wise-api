@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class BankService implements BasicEntityService<BankDTO, Long> {
+public class BankService implements BasicEntityService<BankDTO, BankDTO, Long> {
 
     private final BankRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class BankService implements BasicEntityService<BankDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Bank not found", null));
     }
 }
+
+

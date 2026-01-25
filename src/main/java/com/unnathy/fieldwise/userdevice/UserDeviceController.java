@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/userDevices")
 @RequiredArgsConstructor
-public class UserDeviceController implements BaseController<UserDeviceDTO, Long> {
+public class UserDeviceController implements BaseController<UserDeviceDTO, UserDeviceDTO, Long> {
 
     private final UserDeviceService service;
 
     @Override
-    public BasicEntityService<UserDeviceDTO, Long> getService() {
+    public BasicEntityService<UserDeviceDTO, UserDeviceDTO, Long> getService() {
         return service;
     }
 }
+
+
+

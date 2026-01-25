@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class WebauthnCredentialService implements BasicEntityService<WebauthnCredentialDTO, Long> {
+public class WebauthnCredentialService implements BasicEntityService<WebauthnCredentialDTO, WebauthnCredentialDTO, Long> {
 
     private final WebauthnCredentialRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class WebauthnCredentialService implements BasicEntityService<WebauthnCre
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "WebauthnCredential not found", null));
     }
 }
+
+

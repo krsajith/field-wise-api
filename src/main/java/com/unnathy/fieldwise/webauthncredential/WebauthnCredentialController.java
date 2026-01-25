@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/webauthnCredentials")
 @RequiredArgsConstructor
-public class WebauthnCredentialController implements BaseController<WebauthnCredentialDTO, Long> {
+public class WebauthnCredentialController implements BaseController<WebauthnCredentialDTO, WebauthnCredentialDTO, Long> {
 
     private final WebauthnCredentialService service;
 
     @Override
-    public BasicEntityService<WebauthnCredentialDTO, Long> getService() {
+    public BasicEntityService<WebauthnCredentialDTO, WebauthnCredentialDTO, Long> getService() {
         return service;
     }
 }
+
+
+

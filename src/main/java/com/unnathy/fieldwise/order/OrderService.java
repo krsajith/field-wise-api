@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class OrderService implements BasicEntityService<OrderDTO, Long> {
+public class OrderService implements BasicEntityService<OrderDTO, OrderDTO, Long> {
 
     private final OrderRepository repository;
     private final OrderViewRepository viewRepository;
@@ -85,3 +85,5 @@ public class OrderService implements BasicEntityService<OrderDTO, Long> {
                 .collect(Collectors.toList());
     }
 }
+
+

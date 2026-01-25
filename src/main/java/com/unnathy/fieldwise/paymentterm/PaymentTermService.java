@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PaymentTermService implements BasicEntityService<PaymentTermDTO, Long> {
+public class PaymentTermService implements BasicEntityService<PaymentTermDTO, PaymentTermDTO, Long> {
 
     private final PaymentTermRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class PaymentTermService implements BasicEntityService<PaymentTermDTO, Lo
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "PaymentTerm not found", null));
     }
 }
+
+

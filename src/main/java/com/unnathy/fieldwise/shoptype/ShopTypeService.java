@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ShopTypeService implements BasicEntityService<ShopTypeDTO, Long> {
+public class ShopTypeService implements BasicEntityService<ShopTypeDTO, ShopTypeDTO, Long> {
 
     private final ShopTypeRepository repository;
     private final ModelMapperService modelMapperService;
@@ -51,3 +51,5 @@ public class ShopTypeService implements BasicEntityService<ShopTypeDTO, Long> {
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "ShopType not found", null));
     }
 }
+
+

@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ExpenseCategoryService implements BasicEntityService<ExpenseCategoryDTO, Long> {
+public class ExpenseCategoryService implements BasicEntityService<ExpenseCategoryDTO, ExpenseCategoryDTO, Long> {
 
     private final ExpenseCategoryRepository repository;
     private final ModelMapperService modelMapperService;
@@ -52,3 +52,5 @@ public class ExpenseCategoryService implements BasicEntityService<ExpenseCategor
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "ExpenseCategory not found", null));
     }
 }
+
+

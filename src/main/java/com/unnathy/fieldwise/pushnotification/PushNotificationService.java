@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PushNotificationService implements BasicEntityService<PushNotificationDTO, Long> {
+public class PushNotificationService implements BasicEntityService<PushNotificationDTO, PushNotificationDTO, Long> {
 
     private final PushNotificationRepository repository;
     private final ModelMapperService modelMapperService;
@@ -54,3 +54,5 @@ public class PushNotificationService implements BasicEntityService<PushNotificat
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "PushNotification not found", null));
     }
 }
+
+
