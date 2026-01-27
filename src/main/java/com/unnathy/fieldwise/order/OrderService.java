@@ -7,6 +7,9 @@ import com.unnathy.fieldwise.orderview.OrderViewDTO;
 import com.unnathy.fieldwise.orderview.OrderViewRepository;
 import com.unnathy.fieldwise.user.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,16 +58,14 @@ public class OrderService implements BasicEntityService<OrderDTO, OrderDTO, Long
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Order not found", null));
     }
 
-    public List<OrderViewDTO> getOrderView() {
-        return viewRepository.findAll().stream()
-                .map(entity -> modelMapperService.map(entity, OrderViewDTO.class))
-                .collect(Collectors.toList());
+    public Page<OrderViewDTO> getOrderView(int page, int size) {
+        return viewRepository.findAll(PageRequest.of(page, size, Sort.by("updatedAt").descending()))
+                .map(entity -> modelMapperService.map(entity, OrderViewDTO.class));
     }
 
-    public List<OrderViewDTO> getOrderViewByUserId(Long userId) {
-        return viewRepository.findAllByUserId(userId).stream()
-                .map(entity -> modelMapperService.map(entity, OrderViewDTO.class))
-                .collect(Collectors.toList());
+    public Page<OrderViewDTO> getOrderViewByUserId(Long userId, int page, int size) {
+        return viewRepository.findAllByUserId(userId, PageRequest.of(page, size, Sort.by("updatedAt").descending()))
+                .map(entity -> modelMapperService.map(entity, OrderViewDTO.class));
     }
 
     public OrderViewDTO getOrderViewById(Long id) throws UnnathyError {

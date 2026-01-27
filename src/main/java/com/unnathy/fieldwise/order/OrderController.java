@@ -7,12 +7,11 @@ import com.unnathy.fieldwise.orderview.OrderViewDTO;
 import com.unnathy.fieldwise.user.User;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-
 
 @RestController
 @RequestMapping("/api/orders")
@@ -27,18 +26,22 @@ public class OrderController implements BaseController<OrderDTO, OrderDTO, Long>
     }
 
     @GetMapping("/view")
-    public List<OrderViewDTO> getOrderView(
+    public Page<OrderViewDTO> getOrderView(
             @Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
-            @Parameter(hidden = true) @AuthenticationPrincipal User principal) {
-        return service.getOrderView();
+            @Parameter(hidden = true) @AuthenticationPrincipal User principal,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "20") int size) {
+        return service.getOrderView(page, size);
     }
 
     @GetMapping("/view/user/{userId}")
-    public List<OrderViewDTO> getOrderViewByUserId(
+    public Page<OrderViewDTO> getOrderViewByUserId(
             @Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
             @Parameter(hidden = true) @AuthenticationPrincipal User principal,
-            @PathVariable Long userId) {
-        return service.getOrderViewByUserId(userId);
+            @PathVariable Long userId,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "20") int size) {
+        return service.getOrderViewByUserId(userId, page, size);
     }
 
     @GetMapping("/view/{id}")
