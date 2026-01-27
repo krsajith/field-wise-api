@@ -59,6 +59,22 @@ public class OrderController implements BaseController<OrderDTO, OrderDTO, Long>
             @PathVariable String status) {
         return service.getOrdersByStatus(status);
     }
+
+    @PostMapping("/master")
+    public OrderDTO createOrderWithItems(
+            @Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
+            @Parameter(hidden = true) @AuthenticationPrincipal User principal,
+            @RequestBody OrderWithItemsDTO payload) throws UnnathyError {
+        return service.postWithItems(payload, authorization, principal);
+    }
+
+    @PutMapping("/master")
+    public OrderDTO updateOrderWithItems(
+            @Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
+            @Parameter(hidden = true) @AuthenticationPrincipal User principal,
+            @RequestBody OrderWithItemsDTO payload) throws UnnathyError {
+        return service.putWithItems(payload, authorization, principal);
+    }
 }
 
 

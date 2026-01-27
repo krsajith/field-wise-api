@@ -5,17 +5,21 @@ import com.unnathy.fieldwise.core.ModelMapperService;
 import com.unnathy.fieldwise.core.UnnathyError;
 import com.unnathy.fieldwise.orderview.OrderViewDTO;
 import com.unnathy.fieldwise.orderview.OrderViewRepository;
+import com.unnathy.fieldwise.orderitem.OrderItemDTO;
+import com.unnathy.fieldwise.orderitem.OrderItemRepository;
 import com.unnathy.fieldwise.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Collectors;
-
-
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +28,7 @@ public class OrderService implements BasicEntityService<OrderDTO, OrderDTO, Long
     private final OrderRepository repository;
     private final OrderViewRepository viewRepository;
     private final ModelMapperService modelMapperService;
+    private final OrderItemRepository orderItemRepository;
 
     @Override
     public OrderDTO post(OrderDTO data, String authorization, User principal) throws UnnathyError {
@@ -85,6 +90,120 @@ public class OrderService implements BasicEntityService<OrderDTO, OrderDTO, Long
                 .map(entity -> modelMapperService.map(entity, OrderDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public OrderDTO postWithItems(OrderWithItemsDTO payload, String authorization, User principal) throws UnnathyError {
+        if (payload == null || payload.getOrder() == null) {
+            throw new UnnathyError("INVALID_REQUEST", "Order payload is required", null);
+        }
+        OrderDTO order = payload.getOrder();
+        if (order.getOrderNumber() == null || order.getOrderNumber().isBlank()) {
+            order.setOrderNumber("ORD-" + System.currentTimeMillis());
+        }
+        if (order.getOrderDate() == null) {
+            order.setOrderDate(LocalDate.now(ZoneOffset.UTC));
+        }
+        if (order.getStatus() == null || order.getStatus().isBlank()) {
+            order.setStatus("PENDING");
+        }
+        List<OrderItemDTO> items = payload.getItems();
+        normalizeTotals(order, items);
+        Order entity = modelMapperService.map(order, Order.class);
+        Order saved = repository.save(entity);
+        saveItems(saved.getId(), items);
+        return modelMapperService.map(saved, OrderDTO.class);
+    }
+
+    @Transactional
+    public OrderDTO putWithItems(OrderWithItemsDTO payload, String authorization, User principal) throws UnnathyError {
+        if (payload == null || payload.getOrder() == null) {
+            throw new UnnathyError("INVALID_REQUEST", "Order payload is required", null);
+        }
+        OrderDTO order = payload.getOrder();
+        if (order.getId() == null) {
+            throw new UnnathyError("INVALID_REQUEST", "Order id is required for update", null);
+        }
+        Order existing = repository.findById(order.getId())
+                .orElseThrow(() -> new UnnathyError("NOT_FOUND", "Order not found", null));
+
+        if (order.getOrderNumber() == null || order.getOrderNumber().isBlank()) {
+            order.setOrderNumber(existing.getOrderNumber());
+        }
+        if (order.getOrderDate() == null) {
+            order.setOrderDate(existing.getOrderDate());
+        }
+        if (order.getStatus() == null || order.getStatus().isBlank()) {
+            order.setStatus(existing.getStatus());
+        }
+        List<OrderItemDTO> items = payload.getItems();
+        normalizeTotals(order, items);
+        Order entity = modelMapperService.map(order, Order.class);
+        Order saved = repository.save(entity);
+        orderItemRepository.deleteByOrderId(saved.getId());
+        saveItems(saved.getId(), items);
+        return modelMapperService.map(saved, OrderDTO.class);
+    }
+
+    private void saveItems(Long orderId, List<OrderItemDTO> items) {
+        if (items == null || items.isEmpty()) {
+            return;
+        }
+        List<OrderItemDTO> normalized = items.stream().map(item -> {
+            item.setOrderId(orderId);
+            applyLineTotal(item);
+            return item;
+        }).toList();
+        orderItemRepository.saveAll(
+                normalized.stream()
+                        .map(item -> modelMapperService.map(item, com.unnathy.fieldwise.orderitem.OrderItem.class))
+                        .collect(Collectors.toList())
+        );
+    }
+
+    private void normalizeTotals(OrderDTO order, List<OrderItemDTO> items) {
+        BigDecimal subtotal = order.getSubtotal();
+        BigDecimal taxAmount = order.getTaxAmount();
+        BigDecimal discountAmount = order.getDiscountAmount();
+
+        BigDecimal computedSubtotal = BigDecimal.ZERO;
+        BigDecimal computedTax = BigDecimal.ZERO;
+        BigDecimal computedDiscount = BigDecimal.ZERO;
+        if (items != null) {
+            for (OrderItemDTO item : items) {
+                applyLineTotal(item);
+                computedSubtotal = computedSubtotal.add(getOrZero(item.getLineTotal()));
+                computedTax = computedTax.add(getOrZero(item.getTaxAmount()));
+                computedDiscount = computedDiscount.add(getOrZero(item.getDiscountAmount()));
+            }
+        }
+
+        if (subtotal == null) {
+            subtotal = computedSubtotal;
+        }
+        if (taxAmount == null) {
+            taxAmount = computedTax;
+        }
+        if (discountAmount == null) {
+            discountAmount = computedDiscount;
+        }
+        BigDecimal totalAmount = order.getTotalAmount();
+        if (totalAmount == null) {
+            totalAmount = subtotal.add(taxAmount).subtract(discountAmount);
+        }
+
+        order.setSubtotal(subtotal);
+        order.setTaxAmount(taxAmount);
+        order.setDiscountAmount(discountAmount);
+        order.setTotalAmount(totalAmount);
+    }
+
+    private BigDecimal getOrZero(BigDecimal value) {
+        return value == null ? BigDecimal.ZERO : value;
+    }
+
+    private void applyLineTotal(OrderItemDTO data) {
+        if (data.getQuantity() != null && data.getUnitPrice() != null) {
+            data.setLineTotal(data.getQuantity().multiply(data.getUnitPrice()));
+        }
+    }
 }
-
-

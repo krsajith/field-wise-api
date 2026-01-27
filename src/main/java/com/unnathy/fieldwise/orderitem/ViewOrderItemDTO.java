@@ -1,6 +1,8 @@
 package com.unnathy.fieldwise.orderitem;
 
 import java.math.BigDecimal;
+
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,4 +24,5 @@ public class ViewOrderItemDTO extends com.unnathy.fieldwise.dto.BaseDTO {
     private BigDecimal discountAmount;
     private BigDecimal lineTotal;
     private String productName;
+    private BigDecimal suppliedQuantity;
 }

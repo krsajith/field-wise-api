@@ -29,6 +29,9 @@ public class ViewOrderItem {
     @Column(name = "quantity", precision = 10, scale = 2)
     private BigDecimal quantity;
 
+    @Column(name = "supplied_quantity", nullable = false, precision = 10, scale = 2)
+    private BigDecimal suppliedQuantity;
+
     @Column(name = "unit_price", precision = 10, scale = 2)
     private BigDecimal unitPrice;
 

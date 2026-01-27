@@ -21,6 +21,7 @@ public class OrderItemDTO extends BaseDTO {
     private Long shopVisitId;
     private Long routeId;
     private BigDecimal quantity;
+    private BigDecimal suppliedQuantity;
     private BigDecimal unitPrice;
     private BigDecimal taxRate;
     private BigDecimal taxAmount;
