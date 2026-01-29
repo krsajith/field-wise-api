@@ -4,10 +4,14 @@ import com.unnathy.fieldwise.core.BaseController;
 import com.unnathy.fieldwise.core.BasicEntityService;
 import com.unnathy.fieldwise.core.UnnathyError;
 import com.unnathy.fieldwise.orderview.OrderViewDTO;
+import com.unnathy.fieldwise.service.OrderPdfService;
 import com.unnathy.fieldwise.user.User;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +23,7 @@ import java.util.List;
 public class OrderController implements BaseController<OrderDTO, OrderDTO, Long> {
 
     private final OrderService service;
+    private final OrderPdfService pdfService;
 
     @Override
     public BasicEntityService<OrderDTO, OrderDTO, Long> getService() {
@@ -74,6 +79,23 @@ public class OrderController implements BaseController<OrderDTO, OrderDTO, Long>
             @Parameter(hidden = true) @AuthenticationPrincipal User principal,
             @RequestBody OrderWithItemsDTO payload) throws UnnathyError {
         return service.putWithItems(payload, authorization, principal);
+    }
+
+    @GetMapping("/pdf/{orderId}")
+    public ResponseEntity<byte[]> downloadOrderPdf(
+            @Parameter(hidden = true) @RequestHeader("Authorization") String authorization,
+            @Parameter(hidden = true) @AuthenticationPrincipal User principal,
+            @PathVariable Long orderId) throws UnnathyError {
+        byte[] pdfBytes = pdfService.generateOrderPdf(orderId);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "order-" + orderId + ".pdf");
+        headers.setContentLength(pdfBytes.length);
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(pdfBytes);
     }
 }
 
