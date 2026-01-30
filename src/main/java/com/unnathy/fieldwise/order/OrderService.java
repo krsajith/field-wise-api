@@ -7,6 +7,7 @@ import com.unnathy.fieldwise.orderview.OrderViewDTO;
 import com.unnathy.fieldwise.orderview.OrderViewRepository;
 import com.unnathy.fieldwise.orderitem.OrderItemDTO;
 import com.unnathy.fieldwise.orderitem.OrderItemRepository;
+import com.unnathy.fieldwise.orderitem.OrderItemService;
 import com.unnathy.fieldwise.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,7 @@ public class OrderService implements BasicEntityService<OrderDTO, OrderDTO, Long
     private final OrderViewRepository viewRepository;
     private final ModelMapperService modelMapperService;
     private final OrderItemRepository orderItemRepository;
+    private final OrderItemService orderItemService;
 
     @Override
     public OrderDTO post(OrderDTO data, String authorization, User principal) throws UnnathyError {
@@ -110,7 +112,7 @@ public class OrderService implements BasicEntityService<OrderDTO, OrderDTO, Long
         normalizeTotals(order, items);
         Order entity = modelMapperService.map(order, Order.class);
         Order saved = repository.save(entity);
-        saveItems(saved.getId(), items);
+        saveItems(saved.getId(), items, authorization, principal);
         return modelMapperService.map(saved, OrderDTO.class);
     }
 
@@ -140,24 +142,20 @@ public class OrderService implements BasicEntityService<OrderDTO, OrderDTO, Long
         Order entity = modelMapperService.map(order, Order.class);
         Order saved = repository.save(entity);
         orderItemRepository.deleteByOrderId(saved.getId());
-        saveItems(saved.getId(), items);
+        saveItems(saved.getId(), items, authorization, principal);
         return modelMapperService.map(saved, OrderDTO.class);
     }
 
-    private void saveItems(Long orderId, List<OrderItemDTO> items) {
+    private void saveItems(Long orderId, List<OrderItemDTO> items, String authorization, User principal) throws UnnathyError {
         if (items == null || items.isEmpty()) {
             return;
         }
-        List<OrderItemDTO> normalized = items.stream().map(item -> {
+        // Loop through each item and use OrderItemService.post()
+        // This automatically handles duplicate detection (same orderId + productId)
+        for (OrderItemDTO item : items) {
             item.setOrderId(orderId);
-            applyLineTotal(item);
-            return item;
-        }).toList();
-        orderItemRepository.saveAll(
-                normalized.stream()
-                        .map(item -> modelMapperService.map(item, com.unnathy.fieldwise.orderitem.OrderItem.class))
-                        .collect(Collectors.toList())
-        );
+            orderItemService.post(item, authorization, principal);
+        }
     }
 
     private void normalizeTotals(OrderDTO order, List<OrderItemDTO> items) {

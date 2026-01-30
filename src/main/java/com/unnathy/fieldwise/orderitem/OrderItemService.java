@@ -4,7 +4,6 @@ import com.unnathy.fieldwise.core.BasicEntityService;
 import com.unnathy.fieldwise.core.ModelMapperService;
 import com.unnathy.fieldwise.core.UnnathyError;
 import com.unnathy.fieldwise.order.OrderDTO;
-import com.unnathy.fieldwise.order.OrderService;
 import com.unnathy.fieldwise.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,20 +22,15 @@ public class OrderItemService implements BasicEntityService<OrderItemDTO, OrderI
 
     private final OrderItemRepository repository;
     private final ModelMapperService modelMapperService;
-    private final OrderService orderService;
     private final ViewOrderItemRepository viewOrderItemRepository;
     
     @Override
     public OrderItemDTO post(OrderItemDTO data, String authorization, User principal) throws UnnathyError {
-        applyLineTotal(data);
         if (data.getOrderId() == null) {
-            if (principal == null) {
-                throw new UnnathyError("UNAUTHORIZED", "User not authenticated", null);
-            }
-            OrderDTO orderDTO = buildOrderFromItem(data, principal);
-            OrderDTO createdOrder = orderService.post(orderDTO, authorization, principal);
-            data.setOrderId(createdOrder.getId());
+            throw new UnnathyError("INVALID_REQUEST", "Order ID is required", null);
         }
+
+        applyLineTotal(data);
 
         // Check if order item already exists with same orderId and productId
         return repository.findByOrderIdAndProductId(data.getOrderId(), data.getProductId())
@@ -113,7 +107,7 @@ public class OrderItemService implements BasicEntityService<OrderItemDTO, OrderI
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "OrderItem not found", null));
     }
 
-    private OrderDTO buildOrderFromItem(OrderItemDTO data, User principal) {
+    public OrderDTO buildOrderFromItem(OrderItemDTO data, User principal) {
         OrderDTO order = new OrderDTO();
         order.setOrderNumber("ORD-" + System.currentTimeMillis());
         order.setShopId(data.getShopId());
