@@ -3,14 +3,13 @@ package com.unnathy.fieldwise.user;
 import com.unnathy.fieldwise.core.BasicEntityService;
 import com.unnathy.fieldwise.core.ModelMapperService;
 import com.unnathy.fieldwise.core.UnnathyError;
-import com.unnathy.fieldwise.user.UserDTO;
-import com.unnathy.fieldwise.user.User;
-import com.unnathy.fieldwise.user.User;
-import com.unnathy.fieldwise.user.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 
 
@@ -20,12 +19,11 @@ public class UserService implements BasicEntityService<UserDTO, UserDTO, Long> {
 
     private final UserRepository repository;
     private final ModelMapperService modelMapperService;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public UserDTO post(UserDTO data, String authorization, User principal) throws UnnathyError {
-        User entity = modelMapperService.map(data, User.class);
-        User saved = repository.save(entity);
-        return modelMapperService.map(saved, UserDTO.class);
+        return getUserDTO(data, principal);
     }
 
     @Override
@@ -35,7 +33,16 @@ public class UserService implements BasicEntityService<UserDTO, UserDTO, Long> {
 
     @Override
     public UserDTO put(UserDTO data, String authorization, User principal) throws UnnathyError {
+        return getUserDTO(data, principal);
+    }
+
+    private UserDTO getUserDTO(UserDTO data, User principal) {
         User entity = modelMapperService.map(data, User.class);
+        applyPasswordHash(entity, data);
+        entity.setCreatedBy(principal.getId());
+        entity.setCreatedAt(Instant.now());
+        entity.setUpdatedAt(Instant.now());
+        entity.setUpdatedBy(principal.getId());
         User saved = repository.save(entity);
         return modelMapperService.map(saved, UserDTO.class);
     }
@@ -52,6 +59,23 @@ public class UserService implements BasicEntityService<UserDTO, UserDTO, Long> {
         return repository.findById(id)
                 .map(entity -> modelMapperService.map(entity, UserDTO.class))
                 .orElseThrow(() -> new UnnathyError("NOT_FOUND", "User not found", null));
+    }
+
+    private void applyPasswordHash(User entity, UserDTO data) {
+        String passwordHash = data == null ? null : data.getPasswordHash();
+        if (passwordHash == null || passwordHash.isBlank()) {
+            entity.setPasswordHash(null);
+            return;
+        }
+        if (isBcryptHash(passwordHash)) {
+            entity.setPasswordHash(passwordHash);
+            return;
+        }
+        entity.setPasswordHash(passwordEncoder.encode(passwordHash));
+    }
+
+    private boolean isBcryptHash(String value) {
+        return value.startsWith("$2a$") || value.startsWith("$2b$") || value.startsWith("$2y$");
     }
 }
 
