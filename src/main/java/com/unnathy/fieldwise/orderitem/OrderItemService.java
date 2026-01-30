@@ -37,9 +37,40 @@ public class OrderItemService implements BasicEntityService<OrderItemDTO, OrderI
             OrderDTO createdOrder = orderService.post(orderDTO, authorization, principal);
             data.setOrderId(createdOrder.getId());
         }
-        OrderItem entity = modelMapperService.map(data, OrderItem.class);
-        OrderItem saved = repository.save(entity);
-        return modelMapperService.map(saved, OrderItemDTO.class);
+
+        // Check if order item already exists with same orderId and productId
+        return repository.findByOrderIdAndProductId(data.getOrderId(), data.getProductId())
+            .map(existingItem -> {
+                // Update existing item: add quantities
+                BigDecimal newQuantity = existingItem.getQuantity().add(data.getQuantity());
+                existingItem.setQuantity(newQuantity);
+
+                // Recalculate line total based on new quantity
+                existingItem.setLineTotal(newQuantity.multiply(existingItem.getUnitPrice()));
+
+                // Update other fields if provided
+                if (data.getTaxRate() != null) {
+                    existingItem.setTaxRate(data.getTaxRate());
+                }
+                if (data.getTaxAmount() != null) {
+                    existingItem.setTaxAmount(data.getTaxAmount());
+                }
+                if (data.getDiscountPercentage() != null) {
+                    existingItem.setDiscountPercentage(data.getDiscountPercentage());
+                }
+                if (data.getDiscountAmount() != null) {
+                    existingItem.setDiscountAmount(data.getDiscountAmount());
+                }
+
+                OrderItem saved = repository.save(existingItem);
+                return modelMapperService.map(saved, OrderItemDTO.class);
+            })
+            .orElseGet(() -> {
+                // Insert new order item
+                OrderItem entity = modelMapperService.map(data, OrderItem.class);
+                OrderItem saved = repository.save(entity);
+                return modelMapperService.map(saved, OrderItemDTO.class);
+            });
     }
 
     @Override
